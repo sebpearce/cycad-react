@@ -102,22 +102,22 @@
   margin-left: auto;
   text-align: right; }
 
-.categoryOptions {
+.categorySelect {
   display: flex;
   flex-direction: column;
   margin-top: 10px;
   cursor: pointer; }
 
-.categoryOptionsItem {
+.categorySelectItem {
   font-weight: 600;
   padding: 3px 15px;
   border-radius: 3px; }
 
-.categoryOptionsItem:hover {
+.categorySelectItem:hover {
   background: #5299e0;
   color: #fff;
   cursor: pointer; }
 
-.categoryOptionsItemHover {
+.categorySelectItemHover {
   background: #5299e0;
   color: #fff; }

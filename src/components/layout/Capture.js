@@ -60,6 +60,7 @@ const addTransaction = props => {
 const mapStateToProps = state => ({
   transactions: state.transactions,
   capture: state.capture,
+  categories: state.categories,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -77,13 +78,14 @@ const mapDispatchToProps = dispatch => ({
 export const Capture = (
   {
     transactions,
+    capture,
+    categories,
     addTransaction,
     updateAmountInput,
     updateDateInput,
     updateNoteInput,
     updateCategoryInput,
     clearState,
-    capture,
   },
 ) => {
   return (
@@ -98,6 +100,7 @@ export const Capture = (
         handleNoteChange={updateNoteInput}
         handleCategoryChange={updateCategoryInput}
         adjustDate={adjustDate}
+        categories={categories}
       />
 
       <input type="text" onChange={updateAmountInput} />

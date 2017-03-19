@@ -23,5 +23,6 @@ ReactDOM.render(
 store.subscribe(throttle(() => {
   saveState({
     transactions: store.getState().transactions,
+    // categories: store.getState().categories,
   });
 }, 1000));

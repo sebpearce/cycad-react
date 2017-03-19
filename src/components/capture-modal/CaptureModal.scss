@@ -135,14 +135,14 @@ $date-picker-cell-selected-color: $capture-base-text-color;
   }
 }
 
-.categoryOptions {
+.categorySelect {
   display: flex;
   flex-direction: column;
   margin-top: 10px;
   cursor: pointer;
 }
 
-.categoryOptionsItem {
+.categorySelectItem {
   font-weight: $weight-bold;
   padding: 3px 15px;
   border-radius: 3px;
@@ -154,7 +154,7 @@ $date-picker-cell-selected-color: $capture-base-text-color;
   }
 }
 
-.categoryOptionsItemHover {
+.categorySelectItemHover {
   background: $palette-brightblue;
   color: #fff;
 }
