@@ -5,6 +5,8 @@ import { App } from './App';
 import { Provider } from 'react-redux';
 import createBrowserHistory from 'history/createBrowserHistory';
 import { store } from './store';
+import { saveState } from './localStorage';
+import { throttle } from 'lodash';
 import './index.css';
 
 const history = createBrowserHistory();
@@ -18,16 +20,8 @@ ReactDOM.render(
   document.getElementById('root'),
 );
 
-store.subscribe(() => {
-  console.log('Store changed:', JSON.stringify(store.getState()));
-});
-
-store.dispatch({
-  type: 'ADD_TRANSACTION',
-  payload: {
-    id: '123',
-    amt: 19.99,
-    date: '2017-03-13',
-    cat_id: 2,
-  }
-});
+store.subscribe(throttle(() => {
+  saveState({
+    transactions: store.getState().transactions,
+  });
+}, 1000));
