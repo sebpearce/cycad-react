@@ -11,6 +11,7 @@ export const Capture = (
     updateDateInput,
     updateNoteInput,
     updateCategoryInput,
+    clearState,
     capture,
   },
 ) => {
@@ -21,7 +22,12 @@ export const Capture = (
       <input type="text" onChange={updateDateInput} />
       <input type="text" onChange={updateNoteInput} />
       <input type="text" onChange={updateCategoryInput} />
-      <button onClick={addTransaction}>Add!</button>
+      <button
+        onClick={() => {
+          addTransaction(capture);
+        }}
+      >Add!</button>
+      <button onClick={clearState}>Clear state</button>
       <pre>
         {JSON.stringify(store.getState(), null, '  ')}
       </pre>
@@ -57,28 +63,46 @@ const updateCategoryInput = evt => {
   });
 };
 
-const addTransaction = () => {
+const addTransaction = props => {
   const newTransaction = {
     id: '12345',
-    amt: store.capture.amountInput,
-    date: store.capture.dateInput,
-    note: store.capture.noteInput,
-    cat_id: store.capture.categoryInput,
+    amt: props.amountInput,
+    date: props.dateInput,
+    note: props.noteInput,
+    cat_id: props.categoryInput,
   };
   store.dispatch({ type: 'ADD_TRANSACTION', payload: newTransaction });
 };
 
-export const CaptureContainer = connect(store => {
-  return {
-    transactions: store.transactions,
-    capture: store.capture,
-    addTransaction,
-    updateAmountInput,
-    updateDateInput,
-    updateNoteInput,
-    updateCategoryInput,
-  };
-})(Capture);
+const mapStateToProps = state => ({
+  transactions: state.transactions,
+  capture: state.capture,
+});
+
+const mapDispatchToProps = dispatch => ({
+  updateAmountInput,
+  updateDateInput,
+  updateNoteInput,
+  updateCategoryInput,
+  addTransaction,
+  clearState() {
+    dispatch({ type: 'CLEAR_ALL_TRANSACTIONS' });
+  },
+});
+
+export const CaptureContainer = connect(mapStateToProps, mapDispatchToProps)(
+  Capture,
+);
+
+// export const CaptureContainer = connect(store => {
+//   return {
+//     addTransaction,
+//     updateAmountInput,
+//     updateDateInput,
+//     updateNoteInput,
+//     updateCategoryInput,
+//   };
+// })(Capture);
 
 // How to dispatch:
 // const mapStateToProps = (state, ownProps) => {

@@ -1,10 +1,10 @@
-// import { v4 } from 'node-uuid';
+import { v4 } from 'uuid';
 
 export const transactions = (state = [], action) => {
   switch (action.type) {
     case 'ADD_TRANSACTION':
       const newTransaction = {
-        id: action.payload.id,
+        id: v4(),
         amt: action.payload.amt,
         date: action.payload.date,
         note: action.payload.note || '',
@@ -20,6 +20,10 @@ export const transactions = (state = [], action) => {
 
     case 'REMOVE_TRANSACTION':
       return state.filter(el => el.id !== action.payload.id);
+      
+    case 'CLEAR_ALL_TRANSACTIONS':
+      return [];
+
     default:
       return state;
   }

@@ -5,23 +5,24 @@ test('add a transaction', () => {
   const action = {
     type: 'ADD_TRANSACTION',
     payload: {
-      id: '123',
       amt: '19.99',
       date: '2017-03-13',
-      cat_id: '2',
-    }
-  };
-  const stateAfter = [
-    {
-      id: '123',
-      amt: '19.99',
-      date: '2017-03-13',
-      note: '',
       cat_id: '2',
     },
-  ];
+  };
+  // const stateAfter = [
+  //   {
+  //     amt: '19.99',
+  //     date: '2017-03-13',
+  //     note: '',
+  //     cat_id: '2',
+  //   },
+  // ];
 
-  expect(transactions(stateBefore, action)).toEqual(stateAfter);
+  expect(transactions(stateBefore, action)[0]).toHaveProperty('amt', '19.99')
+  expect(transactions(stateBefore, action)[0]).toHaveProperty('date', '2017-03-13')
+  expect(transactions(stateBefore, action)[0]).toHaveProperty('note', '')
+  expect(transactions(stateBefore, action)[0]).toHaveProperty('cat_id', '2')
 });
 
 test('update a transaction', () => {
@@ -46,7 +47,7 @@ test('update a transaction', () => {
     payload: {
       id: '123',
       amt: '1000.00',
-    }
+    },
   };
   const stateAfter = [
     {
@@ -91,7 +92,7 @@ test('remove a transaction', () => {
     type: 'REMOVE_TRANSACTION',
     payload: {
       id: '123',
-    }
+    },
   };
   const stateAfter = [
     {
