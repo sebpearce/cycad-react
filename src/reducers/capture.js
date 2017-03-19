@@ -1,13 +1,13 @@
 const initialState = {
   amountInput: '',
-  dateInput: '',
+  dateInput: (new Date()).toISOString().slice(0,10),
   noteInput: '',
   categoryInput: '',
 };
 
 export const capture = (state = initialState, action) => {
   const payload = action.payload;
-
+  
   switch (action.type) {
     case 'UPDATE_AMOUNT_INPUT':
       if (
@@ -17,7 +17,8 @@ export const capture = (state = initialState, action) => {
       return { ...state, amountInput: Number(payload.amt).toFixed(2) };
 
     case 'UPDATE_DATE_INPUT':
-      const dateFormat = /^\d{4}-\d{2}-\d{2}$/;
+      // TODO: Handle February 30-31, April 31 etc.
+      const dateFormat = /^2\d{3}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])$/;
       if (!dateFormat.test(payload.date)) return state;
       return { ...state, dateInput: payload.date };
 

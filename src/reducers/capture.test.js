@@ -87,6 +87,23 @@ test('ignores dates that violate the YYYY-MM-DD format', () => {
   expect(capture(stateBefore, action)).toEqual(stateAfter);
 });
 
+test('ignores impossible dates like 2017-03-99', () => {
+  const stateBefore = {
+    dateInput: '2017-03-01',
+  };
+  const action = {
+    type: 'UPDATE_DATE_INPUT',
+    payload: {
+      date: '2017-03-99',
+    },
+  };
+  const stateAfter = {
+    dateInput: '2017-03-01',
+  };
+
+  expect(capture(stateBefore, action)).toEqual(stateAfter);
+});
+
 test('updates the note input', () => {
   const stateBefore = {
     noteInput: 'pickle',

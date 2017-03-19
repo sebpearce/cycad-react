@@ -39,7 +39,7 @@
   justify-content: space-between;
   margin-top: 5px; }
 
-.datePickerCell {
+.datePickerCell, .datePickerCellSelected {
   box-sizing: border-box;
   display: flex;
   flex-basis: 12.5%;
@@ -52,11 +52,18 @@
   background: #f7f7f7;
   border: 1px solid #bcbdbe;
   border-radius: 5px; }
-  .datePickerCell + .-active {
-    color: #3B3E41;
-    background: #fff;
-    border: 2px solid #5299e0;
-    box-shadow: 0 0 5px #ccc; }
+
+.datePickerCell + .-active, .datePickerCellSelected + .-active {
+  color: #3B3E41;
+  background: #fff;
+  border: 2px solid #5299e0;
+  box-shadow: 0 0 5px #ccc; }
+
+.datePickerCellSelected {
+  border: 3px solid #5299e0;
+  background: #fff;
+  color: #3B3E41;
+  box-shadow: 0 0 5px #bbb; }
 
 .pickersContainer {
   display: flex;
@@ -67,29 +74,33 @@
   flex: 1;
   display: flex;
   flex-direction: column; }
-  .categoryPicker [class$="Label"], .amountPicker [class$="Label"] {
-    font-size: 14px;
-    font-weight: 600;
-    margin-bottom: 5px; }
-  .categoryPicker input, .amountPicker input {
-    box-sizing: border-box;
-    border-radius: 5px;
-    border: 1px solid #959798;
-    font-size: 28px;
-    width: 94%;
-    padding: 10px 12px;
-    font-family: "Open Sans";
-    color: #3B3E41; }
-    .categoryPicker input:focus, .amountPicker input:focus {
-      outline: none;
-      border-color: #5299e0;
-      box-shadow: inset 0 0 3px #ccc; }
+
+.categoryPicker [class$="Label"], .amountPicker [class$="Label"] {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 5px; }
+
+.categoryPicker input, .amountPicker input {
+  box-sizing: border-box;
+  border-radius: 5px;
+  border: 1px solid #959798;
+  font-size: 28px;
+  width: 94%;
+  padding: 10px 12px;
+  font-family: "Open Sans";
+  color: #3B3E41; }
+
+.categoryPicker input:focus, .amountPicker input:focus {
+  outline: none;
+  border-color: #5299e0;
+  box-shadow: inset 0 0 3px #ccc; }
 
 .amountPicker {
   text-align: right; }
-  .amountPicker input {
-    margin-left: auto;
-    text-align: right; }
+
+.amountPicker input {
+  margin-left: auto;
+  text-align: right; }
 
 .categoryOptions {
   display: flex;
@@ -101,10 +112,11 @@
   font-weight: 600;
   padding: 3px 15px;
   border-radius: 3px; }
-  .categoryOptionsItem:hover {
-    background: #5299e0;
-    color: #fff;
-    cursor: pointer; }
+
+.categoryOptionsItem:hover {
+  background: #5299e0;
+  color: #fff;
+  cursor: pointer; }
 
 .categoryOptionsItemHover {
   background: #5299e0;

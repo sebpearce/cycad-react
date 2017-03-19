@@ -1,6 +1,13 @@
 @import '../../global.scss';
 $capture-base-text-color: $palette-darkgray;
 
+$date-picker-cell-bg: mix(#fff, $palette-darkgray, 96%);
+$date-picker-cell-color: mix(#fff, $palette-darkgray, 50%);
+$date-picker-cell-border: 1px solid mix(#fff, $palette-darkgray, 66%);
+$date-picker-cell-selected-border: 3px solid $palette-brightblue;
+$date-picker-cell-selected-bg: #fff;
+$date-picker-cell-selected-color: $capture-base-text-color;
+
 .captureOverlay {
   position: absolute;
   top: 0;
@@ -50,9 +57,6 @@ $capture-base-text-color: $palette-darkgray;
 
 .datePickerCell {
   box-sizing: border-box;
-  $date-picker-cell-bg: mix(#fff, $palette-darkgray, 96%);
-  $date-picker-cell-color: mix(#fff, $palette-darkgray, 50%);
-  $date-picker-cell-border: 1px solid mix(#fff, $palette-darkgray, 66%);
   display: flex;
   flex-basis: 12.5%;
   align-items: center;
@@ -71,6 +75,14 @@ $capture-base-text-color: $palette-darkgray;
     border: 2px solid $palette-brightblue;
     box-shadow: 0 0 5px #ccc;
   }
+}
+
+.datePickerCellSelected {
+  @extend .datePickerCell;
+  border: $date-picker-cell-selected-border;
+  background: $date-picker-cell-selected-bg;
+  color: $date-picker-cell-selected-color;
+  box-shadow: 0 0 5px #bbb;
 }
 
 .pickersContainer {

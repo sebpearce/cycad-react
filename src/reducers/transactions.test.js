@@ -10,19 +10,14 @@ test('add a transaction', () => {
       cat_id: '2',
     },
   };
-  // const stateAfter = [
-  //   {
-  //     amt: '19.99',
-  //     date: '2017-03-13',
-  //     note: '',
-  //     cat_id: '2',
-  //   },
-  // ];
 
-  expect(transactions(stateBefore, action)[0]).toHaveProperty('amt', '19.99')
-  expect(transactions(stateBefore, action)[0]).toHaveProperty('date', '2017-03-13')
-  expect(transactions(stateBefore, action)[0]).toHaveProperty('note', '')
-  expect(transactions(stateBefore, action)[0]).toHaveProperty('cat_id', '2')
+  expect(transactions(stateBefore, action)[0]).toHaveProperty('amt', '19.99');
+  expect(transactions(stateBefore, action)[0]).toHaveProperty(
+    'date',
+    '2017-03-13',
+  );
+  expect(transactions(stateBefore, action)[0]).toHaveProperty('note', '');
+  expect(transactions(stateBefore, action)[0]).toHaveProperty('cat_id', '2');
 });
 
 test('update a transaction', () => {

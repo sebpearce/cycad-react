@@ -3,38 +3,6 @@ import { connect } from 'react-redux';
 import { CaptureModal } from '../capture-modal/CaptureModal';
 import { store } from '../../store';
 
-export const Capture = (
-  {
-    transactions,
-    addTransaction,
-    updateAmountInput,
-    updateDateInput,
-    updateNoteInput,
-    updateCategoryInput,
-    clearState,
-    capture,
-  },
-) => {
-  return (
-    <div>
-      {/* <CaptureModal /> */}
-      <input type="text" onChange={updateAmountInput} />
-      <input type="text" onChange={updateDateInput} />
-      <input type="text" onChange={updateNoteInput} />
-      <input type="text" onChange={updateCategoryInput} />
-      <button
-        onClick={() => {
-          addTransaction(capture);
-        }}
-      >Add!</button>
-      <button onClick={clearState}>Clear state</button>
-      <pre>
-        {JSON.stringify(store.getState(), null, '  ')}
-      </pre>
-    </div>
-  );
-};
-
 const updateAmountInput = evt => {
   store.dispatch({
     type: 'UPDATE_AMOUNT_INPUT',
@@ -63,6 +31,21 @@ const updateCategoryInput = evt => {
   });
 };
 
+const getISODate = dateObj => {
+  return dateObj.toISOString().slice(0, 10);
+};
+
+const adjustDate = delta => {
+  const dateObj = new Date(store.getState().capture.dateInput);
+  const newDate = new Date(dateObj.getTime() + delta * 864e5);
+  store.dispatch({
+    type: 'UPDATE_DATE_INPUT',
+    payload: {
+      date: getISODate(newDate),
+    },
+  });
+};
+
 const addTransaction = props => {
   const newTransaction = {
     id: '12345',
@@ -85,46 +68,55 @@ const mapDispatchToProps = dispatch => ({
   updateNoteInput,
   updateCategoryInput,
   addTransaction,
+  adjustDate,
   clearState() {
     dispatch({ type: 'CLEAR_ALL_TRANSACTIONS' });
   },
 });
 
+export const Capture = (
+  {
+    transactions,
+    addTransaction,
+    updateAmountInput,
+    updateDateInput,
+    updateNoteInput,
+    updateCategoryInput,
+    clearState,
+    capture,
+  },
+) => {
+  return (
+    <div>
+      <CaptureModal
+        date={capture.dateInput}
+        amt={capture.amountInput}
+        note={capture.noteInput}
+        cat_id={capture.categoryInput}
+        handleAmountChange={updateAmountInput}
+        handleDateChange={updateDateInput}
+        handleNoteChange={updateNoteInput}
+        handleCategoryChange={updateCategoryInput}
+        adjustDate={adjustDate}
+      />
+
+      <input type="text" onChange={updateAmountInput} />
+      <input type="text" onChange={updateDateInput} />
+      <input type="text" onChange={updateNoteInput} />
+      <input type="text" onChange={updateCategoryInput} />
+      <button
+        onClick={() => {
+          addTransaction(capture);
+        }}
+      >Add!</button>
+      <button onClick={clearState}>Clear state</button>
+      <pre>
+        {JSON.stringify(store.getState(), null, '  ')}
+      </pre>
+    </div>
+  );
+};
+
 export const CaptureContainer = connect(mapStateToProps, mapDispatchToProps)(
   Capture,
 );
-
-// export const CaptureContainer = connect(store => {
-//   return {
-//     addTransaction,
-//     updateAmountInput,
-//     updateDateInput,
-//     updateNoteInput,
-//     updateCategoryInput,
-//   };
-// })(Capture);
-
-// How to dispatch:
-// const mapStateToProps = (state, ownProps) => {
-//   return {
-//     activeParty: true,
-//   };
-// };
-//
-// const mapDispatchToProps = (dispatch, ownProps) => {
-//   return {
-//     onClick: () => {
-//       dispatch({
-//         type: 'ADD_TRANSACTION',
-//         id: '123',
-//         amt: 19.99,
-//         date: '2017-03-13',
-//         cat_id: 2,
-//       });
-//     },
-//   };
-// };
-//
-// const Capture = connect(mapStateToProps, mapDispatchToProps)(Flub);
-//
-// export default Capture;
