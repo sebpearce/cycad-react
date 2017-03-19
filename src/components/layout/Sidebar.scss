@@ -1,0 +1,46 @@
+@import '../../global.scss';
+
+$section-bg: $palette-darkgray;
+$active-section-bg: $palette-coolblue;
+
+.sidebar {
+  flex: 0 0 250px;
+  color: white;
+  background: $section-bg;
+}
+
+ul {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 25vh;
+  list-style: none;
+  
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  font-size: 21px;
+  font-weight: bold;
+  transition: background 0.1s;
+  background: transparent;
+  
+  &:hover {
+    background: mix(#fff, $section-bg, 5%);
+  }
+  // &:not(:last-child) {
+  //   border-bottom: 2px solid mix(#000, $section-bg, 40%);
+  // }
+}
+
+a.selected {
+  background: $palette-coolblue;
+}

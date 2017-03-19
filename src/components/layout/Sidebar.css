@@ -1,0 +1,30 @@
+.sidebar {
+  flex: 0 0 250px;
+  color: white;
+  background: #3B3E41; }
+
+ul {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0; }
+
+li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 25vh;
+  list-style: none; }
+
+a {
+  text-decoration: none;
+  color: inherit;
+  font-size: 21px;
+  font-weight: bold;
+  transition: background 0.1s;
+  background: transparent; }
+  a:hover {
+    background: #45484b; }
+
+a.selected {
+  background: #5D758E; }

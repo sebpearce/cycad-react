@@ -1,0 +1,18 @@
+@import './global.scss';
+
+.app {
+  color: $palette-text;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.mainContainer {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+}
+
+.content {
+  flex: 2;
+}

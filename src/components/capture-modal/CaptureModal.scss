@@ -1,0 +1,148 @@
+@import '../../global.scss';
+$capture-base-text-color: $palette-darkgray;
+
+.captureOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: hsla(0,0%,0%,0.25);
+}
+
+.captureContainer {
+  margin-bottom: 25px;
+  position: absolute;
+  top: 25vh;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.capture {
+  display: inline-block;
+  padding: 20px 25px;
+  background: #fff;
+  box-shadow: 0 0 15px hsla(0,0%,0%,0.4);
+  border: 1px solid mix(#fff, $palette-darkgray, 40%);
+  border-radius: 10px;
+  width: 500px;
+  color: $capture-base-text-color;
+}
+
+.tips {
+  text-align: right;
+  font-size: ($font-size-small * 0.9);
+  color: #ccc;
+}
+
+.dateDisplay {
+  font-size: $font-size-medium;
+  font-weight: $weight-heavy;
+  text-align: right;
+}
+
+.datePicker {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  margin-top: 5px;
+}
+
+.datePickerCell {
+  box-sizing: border-box;
+  $date-picker-cell-bg: mix(#fff, $palette-darkgray, 96%);
+  $date-picker-cell-color: mix(#fff, $palette-darkgray, 50%);
+  $date-picker-cell-border: 1px solid mix(#fff, $palette-darkgray, 66%);
+  display: flex;
+  flex-basis: 12.5%;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  font-size: $font-size-small;
+  font-weight: $weight-bold;
+  color: $date-picker-cell-color;
+  background: $date-picker-cell-bg;
+  border: $date-picker-cell-border;
+  border-radius: 5px;
+
+  + .-active {
+    color: $capture-base-text-color;
+    background: #fff;
+    border: 2px solid $palette-brightblue;
+    box-shadow: 0 0 5px #ccc;
+  }
+}
+
+.pickersContainer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+%picker {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+
+  [class$="Label"] {
+    font-size: $font-size-small;
+    font-weight: $weight-bold;
+    margin-bottom: 5px;
+  }
+
+  input {
+    $picker-font-size: $font-size-large;
+    $picker-color: $capture-base-text-color;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 1px solid mix(#fff, $palette-darkgray, 46%);;
+    font-size: $picker-font-size;
+    width: 94%;
+    padding: 10px 12px;
+    font-family: $base-font-family;
+    color: $picker-color;
+
+    &:focus {
+      outline: none;
+      border-color: $palette-brightblue;
+      box-shadow: inset 0 0 3px #ccc;
+    }
+  }
+}
+
+.categoryPicker {
+  @extend %picker;
+}
+
+.amountPicker {
+  @extend %picker;
+  text-align: right;
+  input {
+    margin-left: auto;
+    text-align: right;
+  }
+}
+
+.categoryOptions {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.categoryOptionsItem {
+  font-weight: $weight-bold;
+  padding: 3px 15px;
+  border-radius: 3px;
+
+  &:hover {
+    background: $palette-brightblue;
+    color: #fff;
+    cursor: pointer;
+  }
+}
+
+.categoryOptionsItemHover {
+  background: $palette-brightblue;
+  color: #fff;
+}
