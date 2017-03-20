@@ -25,8 +25,12 @@ export class CaptureModal extends React.Component {
     this.filterVisibleItems(e.target.value, this.props.categories);
   };
   
-  // TODO: On mouse enter of an item, set it as the selectedItem.
-  
+  setSelectedItem = i => {
+    this.setState({
+      selectedItem: i,
+    })
+  }
+
   incrementSelectedItem = delta => {
     const result = this.state.selectedItem + delta;
     if (result < 0 || result >= this.state.visibleItems.length) return;
@@ -116,6 +120,7 @@ export class CaptureModal extends React.Component {
               <CategorySelect
                 items={this.state.visibleItems}
                 selectedItem={this.state.selectedItem}
+                setSelectedItem={this.setSelectedItem.bind(this)}
               />
             </div>
           </div>
