@@ -1,16 +1,21 @@
 import React from 'react';
 import styles from './CaptureModal.css';
 
-const CategoryItem = ({ name }) => {
-  return <div className={styles.categorySelectItem}>{name}</div>;
+const CategoryItem = ({ name, className }) => {
+  return <div className={className}>{name}</div>;
 };
 
-const CategorySelect = ({ categories }) => {
+const CategorySelect = ({ items, selectedItem }) => {
   return (
     <div className={styles.categorySelect}>
-      {
-        categories.map(cat => <CategoryItem name={cat.name} key={cat.id} />)
-      }
+      {items.map((cat, idx) => {
+        let className = selectedItem === idx
+          ? styles.selectedItem
+          : styles.categorySelectItem;
+        return (
+          <CategoryItem className={className} name={cat.name} key={cat.id} />
+        );
+      })}
     </div>
   );
 };

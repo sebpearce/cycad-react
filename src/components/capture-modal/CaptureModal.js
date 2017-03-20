@@ -4,18 +4,62 @@ import DatePicker from './DatePicker';
 import CategorySelect from './CategorySelect';
 
 export class CaptureModal extends React.Component {
+  state = {
+    visibleItems: [],
+    selectedItem: 0,
+  };
+
   componentDidMount() {
     document.addEventListener('keydown', this.handleKeyDown.bind(this), false);
   }
 
   componentWillUnmount() {
-    document.removeEventListener('keydown', this.handleKeyDown.bind(this), false);
+    document.removeEventListener(
+      'keydown',
+      this.handleKeyDown.bind(this),
+      false
+    );
   }
+
+  handleSearchStringChange = e => {
+    this.filterVisibleItems(e.target.value, this.props.categories);
+  };
+  
+  // TODO: On mouse enter of an item, set it as the selectedItem.
+  
+  incrementSelectedItem = delta => {
+    const result = this.state.selectedItem + delta;
+    if (result < 0 || result >= this.state.visibleItems.length) return;
+    this.setState({
+      selectedItem: result,
+    });
+  };
+
+  filterVisibleItems = (searchString, items) => {
+    let result = !searchString
+      ? []
+      : items.filter(item =>
+          item.name.toLowerCase().includes(searchString.toLowerCase()));
+    this.setState({
+      visibleItems: result,
+      selectedItem: 0,
+    });
+  };
 
   handleKeyDown(evt) {
     switch (evt.keyCode) {
-      // [
+      case 38:
+        // up arrow
+        evt.preventDefault();
+        this.incrementSelectedItem(-1);
+        break;
+      case 40:
+        // down arrow
+        evt.preventDefault();
+        this.incrementSelectedItem(1);
+        break;
       case 219:
+        // [
         evt.preventDefault();
         if (evt.shiftKey) {
           this.props.adjustDate(-7);
@@ -23,8 +67,8 @@ export class CaptureModal extends React.Component {
           this.props.adjustDate(-1);
         }
         break;
-      // ]
       case 221:
+        // ]
         evt.preventDefault();
         if (evt.shiftKey) {
           this.props.adjustDate(7);
@@ -56,7 +100,7 @@ export class CaptureModal extends React.Component {
                     tabIndex="1"
                     autoFocus="true"
                     className={styles.categoryPickerInput}
-                    onChange={props.handleCategoryChange}
+                    onChange={this.handleSearchStringChange}
                   />
                 </div>
                 <div className={styles.amountPicker}>
@@ -69,7 +113,10 @@ export class CaptureModal extends React.Component {
                   />
                 </div>
               </div>
-              <CategorySelect categories={props.categories}/>
+              <CategorySelect
+                items={this.state.visibleItems}
+                selectedItem={this.state.selectedItem}
+              />
             </div>
           </div>
         </div>

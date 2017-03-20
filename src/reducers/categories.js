@@ -1,10 +1,14 @@
 const initialState = [
-  { id: '0', name: 'beef' },
-  { id: '1', name: 'chicken' },
-  { id: '2', name: 'pork' },
-  { id: '3', name: 'turkey' },
-  { id: '4', name: 'lamb' },
-  { id: '5', name: 'venison' },
+  { id: '0', name: 'Rent' },
+  { id: '1', name: 'Groceries' },
+  { id: '2', name: 'Eating out' },
+  { id: '3', name: 'Phone' },
+  { id: '4', name: 'Internet' },
+  { id: '5', name: 'Jiu-jitsu' },
+  { id: '6', name: 'Petrol' },
+  { id: '7', name: 'Car maintenance' },
+  { id: '8', name: 'Haircuts' },
+  { id: '9', name: 'Medical' },
 ];
 
 export const categories = (state = initialState, action) => {

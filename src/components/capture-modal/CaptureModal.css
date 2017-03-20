@@ -108,16 +108,16 @@
   margin-top: 10px;
   cursor: pointer; }
 
-.categorySelectItem {
+.categorySelectItem, .selectedItem {
   font-weight: 600;
   padding: 3px 15px;
   border-radius: 3px; }
 
-.categorySelectItem:hover {
+.categorySelectItem:hover, .selectedItem:hover {
   background: #5299e0;
   color: #fff;
   cursor: pointer; }
 
-.categorySelectItemHover {
+.selectedItem {
   background: #5299e0;
   color: #fff; }

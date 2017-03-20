@@ -154,7 +154,8 @@ $date-picker-cell-selected-color: $capture-base-text-color;
   }
 }
 
-.categorySelectItemHover {
+.selectedItem {
+  @extend .categorySelectItem;
   background: $palette-brightblue;
   color: #fff;
 }

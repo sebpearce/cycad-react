@@ -18,6 +18,7 @@ export const capture = (state = initialState, action) => {
 
     case 'UPDATE_DATE_INPUT':
       // TODO: Handle February 30-31, April 31 etc.
+      // Maybe if date doesn't match itself when passed through Date()?
       const dateFormat = /^2\d{3}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])$/;
       if (!dateFormat.test(payload.date)) return state;
       return { ...state, dateInput: payload.date };
