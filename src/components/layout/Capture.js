@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 import { CaptureModal } from '../capture-modal/CaptureModal';
 import { store } from '../../store';
 
-const updateAmountInput = evt => {
+const updateAmountInput = amt => {
   store.dispatch({
     type: 'UPDATE_AMOUNT_INPUT',
-    payload: { amt: evt.target.value },
+    payload: { amt: amt },
   });
 };
 
@@ -46,13 +46,13 @@ const adjustDate = delta => {
   });
 };
 
-const addTransaction = props => {
+const addTransaction = () => {
+  const captured = store.getState().capture;
   const newTransaction = {
-    id: '12345',
-    amt: props.amountInput,
-    date: props.dateInput,
-    note: props.noteInput,
-    cat_id: props.categoryInput,
+    amt: captured.amountInput,
+    date: captured.dateInput,
+    note: captured.noteInput,
+    cat_id: captured.categoryInput,
   };
   store.dispatch({ type: 'ADD_TRANSACTION', payload: newTransaction });
 };
@@ -75,51 +75,110 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
-export const Capture = (
-  {
-    transactions,
-    capture,
-    categories,
-    addTransaction,
-    updateAmountInput,
-    updateDateInput,
-    updateNoteInput,
-    updateCategoryInput,
-    clearState,
-  },
-) => {
-  return (
-    <div>
-      <CaptureModal
-        date={capture.dateInput}
-        amt={capture.amountInput}
-        note={capture.noteInput}
-        cat_id={capture.categoryInput}
-        handleAmountChange={updateAmountInput}
-        handleDateChange={updateDateInput}
-        handleNoteChange={updateNoteInput}
-        handleCategoryChange={updateCategoryInput}
-        adjustDate={adjustDate}
-        categories={categories}
-      />
+export class Capture extends React.Component {
+  state = {
+    isCaptureVisible: true,
+  };
 
-      <input type="text" onChange={updateAmountInput} />
-      <input type="text" onChange={updateDateInput} />
-      <input type="text" onChange={updateNoteInput} />
-      <input type="text" onChange={updateCategoryInput} />
-      <button
-        onClick={() => {
-          addTransaction(capture);
-        }}
-      >Add!</button>
-      <button onClick={clearState}>Clear state</button>
-      <pre>
-        {JSON.stringify(store.getState(), null, '  ')}
-      </pre>
-    </div>
-  );
-};
+  componentDidMount() {
+    document.addEventListener('keydown', this.handleKeyDown.bind(this), false);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener(
+      'keydown',
+      this.handleKeyDown.bind(this),
+      false
+    );
+  }
+  
+  hideCaptureModal = () => {
+    this.setState({
+      isCaptureVisible: false,
+    })
+  }
+
+  showCaptureModal = () => {
+    this.setState({
+      isCaptureVisible: true,
+    })
+  }
+
+  handleKeyDown = e => {
+    switch (e.keyCode) {
+      case 27: // escape
+        this.hideCaptureModal();
+        e.preventDefault();
+        break;
+      case 67: // escape
+        (!this.state.isCaptureVisible) && e.preventDefault();
+        this.showCaptureModal();
+        break;
+      default:
+        break;
+    }
+  };
+
+  render() {
+    const {
+      transactions,
+      capture,
+      categories,
+      addTransaction,
+      updateAmountInput,
+      updateDateInput,
+      updateNoteInput,
+      updateCategoryInput,
+      clearState,
+    } = this.props;
+    return (
+      <div>
+        {this.state.isCaptureVisible &&
+          <CaptureModal
+            date={capture.dateInput}
+            amt={capture.amountInput}
+            note={capture.noteInput}
+            cat_id={capture.categoryInput}
+            updateAmountInput={updateAmountInput}
+            handleDateChange={updateDateInput}
+            handleNoteChange={updateNoteInput}
+            handleCategoryChange={updateCategoryInput}
+            addTransaction={addTransaction}
+            adjustDate={adjustDate}
+            categories={categories}
+          />}
+
+        <input type="text" onChange={updateAmountInput} />
+        <input type="text" onChange={updateDateInput} />
+        <input type="text" onChange={updateNoteInput} />
+        <input type="text" onChange={updateCategoryInput} />
+        <button
+          onClick={() => {
+            addTransaction(capture);
+          }}
+        >Add!</button>
+        <button onClick={clearState}>Clear state</button>
+        <pre>
+          {JSON.stringify(store.getState(), null, '  ')}
+        </pre>
+      </div>
+    );
+  }
+  // }(
+  //   {
+  //     transactions,
+  //     capture,
+  //     categories,
+  //     addTransaction,
+  //     updateAmountInput,
+  //     updateDateInput,
+  //     updateNoteInput,
+  //     updateCategoryInput,
+  //     clearState,
+  //   },
+  // ) => {
+}
 
 export const CaptureContainer = connect(mapStateToProps, mapDispatchToProps)(
-  Capture,
+  Capture
 );

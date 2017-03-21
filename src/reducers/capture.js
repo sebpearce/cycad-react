@@ -1,21 +1,19 @@
 const initialState = {
-  amountInput: '',
-  dateInput: (new Date()).toISOString().slice(0,10),
+  amountInput: '0.00',
+  dateInput: new Date().toISOString().slice(0, 10),
   noteInput: '',
   categoryInput: '',
 };
 
 export const capture = (state = initialState, action) => {
   const payload = action.payload;
-  
+
   switch (action.type) {
     case 'UPDATE_AMOUNT_INPUT':
-      if (
-        String(Number(payload.amt)) !== payload.amt || Number(payload.amt) === 0
-      )
+      if (String(Number(payload.amt)) !== payload.amt && payload.amt !== '')
         return state;
       return { ...state, amountInput: Number(payload.amt).toFixed(2) };
-
+      
     case 'UPDATE_DATE_INPUT':
       // TODO: Handle February 30-31, April 31 etc.
       // Maybe if date doesn't match itself when passed through Date()?

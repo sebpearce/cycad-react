@@ -8,6 +8,8 @@ export class CaptureModal extends React.Component {
     visibleItems: [],
     selectedItem: 0,
     categoryInput: '',
+    amountInput: '',
+    isVisible: true,
   };
 
   componentDidMount() {
@@ -22,6 +24,13 @@ export class CaptureModal extends React.Component {
     );
   }
 
+  handleAmountStringChange = e => {
+    this.setState({
+      amountInput: e.target.value,
+    })
+    this.props.updateAmountInput(e.target.value);
+  }
+
   handleSearchStringChange = e => {
     const visibleItems = this.filterVisibleItems(
       e.target.value,
@@ -30,18 +39,27 @@ export class CaptureModal extends React.Component {
     this.setState({
       visibleItems: visibleItems,
       selectedItem: 0,
+      categoryInput: e.target.value,
     });
     this.props.handleCategoryChange(
       visibleItems.length > 0 ? visibleItems[0].id : ''
     );
   };
+  
+  handleEnter = e => {
+    this.props.addTransaction();
+    this.setState({
+      amountInput: '',
+    })
+    this.props.updateAmountInput('');
+  };
 
-  handleMouseOver(i, id, event) {
+  handleMouseOver = (i, id, event) => {
     this.props.handleCategoryChange(id);
     this.setState({
       selectedItem: i,
     });
-  }
+  };
 
   incrementSelectedItem = delta => {
     const result = this.state.selectedItem + delta;
@@ -62,18 +80,19 @@ export class CaptureModal extends React.Component {
 
   handleKeyDown(evt) {
     switch (evt.keyCode) {
-      case 38:
-        // up arrow
+      case 13: // enter
+        this.handleEnter();
+        evt.preventDefault();
+        break;
+      case 38: // up arrow
         evt.preventDefault();
         this.incrementSelectedItem(-1);
         break;
-      case 40:
-        // down arrow
+      case 40: // down arrow
         evt.preventDefault();
         this.incrementSelectedItem(1);
         break;
-      case 219:
-        // [
+      case 219: // [
         evt.preventDefault();
         if (evt.shiftKey) {
           this.props.adjustDate(-7);
@@ -81,8 +100,7 @@ export class CaptureModal extends React.Component {
           this.props.adjustDate(-1);
         }
         break;
-      case 221:
-        // ]
+      case 221: // ]
         evt.preventDefault();
         if (evt.shiftKey) {
           this.props.adjustDate(7);
@@ -115,6 +133,7 @@ export class CaptureModal extends React.Component {
                     autoFocus="true"
                     className={styles.categoryPickerInput}
                     onChange={this.handleSearchStringChange}
+                    value={this.state.categoryInput}
                   />
                 </div>
                 <div className={styles.amountPicker}>
@@ -123,7 +142,8 @@ export class CaptureModal extends React.Component {
                     type="text"
                     tabIndex="2"
                     className={styles.amountPickerInput}
-                    onChange={props.handleAmountChange}
+                    onChange={this.handleAmountStringChange}
+                    value={this.state.amountInput}
                   />
                 </div>
               </div>
