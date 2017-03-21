@@ -113,11 +113,6 @@
   padding: 3px 15px;
   border-radius: 3px; }
 
-.categorySelectItem:hover, .selectedItem:hover {
-  background: #5299e0;
-  color: #fff;
-  cursor: pointer; }
-
 .selectedItem {
   background: #5299e0;
   color: #fff; }

@@ -24,10 +24,10 @@ const updateNoteInput = evt => {
   });
 };
 
-const updateCategoryInput = evt => {
+const updateCategoryInput = (id, evt) => {
   store.dispatch({
     type: 'UPDATE_CATEGORY_INPUT',
-    payload: { cat_id: evt.target.value },
+    payload: { cat_id: id },
   });
 };
 

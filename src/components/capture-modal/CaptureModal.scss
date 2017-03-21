@@ -147,11 +147,11 @@ $date-picker-cell-selected-color: $capture-base-text-color;
   padding: 3px 15px;
   border-radius: 3px;
 
-  &:hover {
-    background: $palette-brightblue;
-    color: #fff;
-    cursor: pointer;
-  }
+  // &:hover {
+  //   background: $palette-brightblue;
+  //   color: #fff;
+  //   cursor: pointer;
+  // }
 }
 
 .selectedItem {

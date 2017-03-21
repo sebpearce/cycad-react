@@ -7,6 +7,7 @@ export class CaptureModal extends React.Component {
   state = {
     visibleItems: [],
     selectedItem: 0,
+    categoryInput: '',
   };
 
   componentDidMount() {
@@ -22,13 +23,24 @@ export class CaptureModal extends React.Component {
   }
 
   handleSearchStringChange = e => {
-    this.filterVisibleItems(e.target.value, this.props.categories);
+    const visibleItems = this.filterVisibleItems(
+      e.target.value,
+      this.props.categories
+    );
+    this.setState({
+      visibleItems: visibleItems,
+      selectedItem: 0,
+    });
+    this.props.handleCategoryChange(
+      visibleItems.length > 0 ? visibleItems[0].id : ''
+    );
   };
-  
-  setSelectedItem = i => {
+
+  handleMouseOver(i, id, event) {
+    this.props.handleCategoryChange(id);
     this.setState({
       selectedItem: i,
-    })
+    });
   }
 
   incrementSelectedItem = delta => {
@@ -37,17 +49,15 @@ export class CaptureModal extends React.Component {
     this.setState({
       selectedItem: result,
     });
+    this.props.handleCategoryChange(this.state.visibleItems[result].id);
   };
 
   filterVisibleItems = (searchString, items) => {
-    let result = !searchString
-      ? []
-      : items.filter(item =>
-          item.name.toLowerCase().includes(searchString.toLowerCase()));
-    this.setState({
-      visibleItems: result,
-      selectedItem: 0,
-    });
+    if (!searchString) {
+      return [];
+    }
+    return items.filter(item =>
+      item.name.toLowerCase().includes(searchString.toLowerCase()));
   };
 
   handleKeyDown(evt) {
@@ -120,7 +130,7 @@ export class CaptureModal extends React.Component {
               <CategorySelect
                 items={this.state.visibleItems}
                 selectedItem={this.state.selectedItem}
-                setSelectedItem={this.setSelectedItem.bind(this)}
+                handleMouseOver={this.handleMouseOver.bind(this)}
               />
             </div>
           </div>

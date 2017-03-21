@@ -27,7 +27,7 @@ export const capture = (state = initialState, action) => {
       return { ...state, noteInput: String(payload.note) };
 
     case 'UPDATE_CATEGORY_INPUT':
-      if (String(Number(payload.cat_id)) !== payload.cat_id) return state;
+      // if (String(Number(payload.cat_id)) !== payload.cat_id) return state;
       return { ...state, categoryInput: payload.cat_id };
 
     default:
