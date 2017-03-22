@@ -102,7 +102,7 @@ export class Capture extends React.Component {
         this.hideCaptureModal();
         e.preventDefault();
         break;
-      case 67: // c
+      case 32: // spacebar
         !this.state.isCaptureVisible && e.preventDefault();
         this.showCaptureModal();
         break;

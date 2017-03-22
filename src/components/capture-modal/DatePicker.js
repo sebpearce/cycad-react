@@ -1,6 +1,8 @@
 import React from 'react';
 import styles from './CaptureModal.css';
 
+// TODO: Handle onClick for direct clicks on days
+
 const months = [
   'January',
   'February',

@@ -1,5 +1,39 @@
 import { capture } from './capture';
 
+test('ignores decimal on the end', () => {
+  const stateBefore = {
+    amountInput: '42.00',
+  };
+  const action = {
+    type: 'UPDATE_AMOUNT_INPUT',
+    payload: {
+      amt: '42.',
+    },
+  };
+  const stateAfter = {
+    amountInput: '42.00',
+  };
+
+  expect(capture(stateBefore, action)).toEqual(stateAfter);
+});
+
+test('can handle commas', () => {
+  const stateBefore = {
+    amountInput: '123.00',
+  };
+  const action = {
+    type: 'UPDATE_AMOUNT_INPUT',
+    payload: {
+      amt: '1,245,924.90',
+    },
+  };
+  const stateAfter = {
+    amountInput: '1245924.90',
+  };
+
+  expect(capture(stateBefore, action)).toEqual(stateAfter);
+});
+
 test('converts integers to money format', () => {
   const stateBefore = {
     amountInput: '123.00',
@@ -19,24 +53,26 @@ test('converts integers to money format', () => {
   expect(capture(stateBefore, action)).toEqual(stateAfter);
 });
 
-test('amount cannot be zero', () => {
+test('accepts values with a decimal already', () => {
   const stateBefore = {
     amountInput: '123.00',
+    dateInput: '2017-03-19',
   };
   const action = {
     type: 'UPDATE_AMOUNT_INPUT',
     payload: {
-      amt: '0',
+      amt: '666.55',
     },
   };
   const stateAfter = {
-    amountInput: '123.00'
+    amountInput: '666.55',
+    dateInput: '2017-03-19',
   };
 
   expect(capture(stateBefore, action)).toEqual(stateAfter);
 });
 
-test('ignores non-numerical input in the amount', () => {
+test('interpets non-numerical input as nothing', () => {
   const stateBefore = {
     amountInput: '123.00',
   };
@@ -47,7 +83,7 @@ test('ignores non-numerical input in the amount', () => {
     },
   };
   const stateAfter = {
-    amountInput: '123.00',
+    amountInput: '',
   };
 
   expect(capture(stateBefore, action)).toEqual(stateAfter);
@@ -149,7 +185,7 @@ test('only accepts integers', () => {
     },
   };
   const stateAfter = {
-    categoryInput: '2',
+    categoryInput: '',
   };
 
   expect(capture(stateBefore, action)).toEqual(stateAfter);

@@ -27,11 +27,33 @@ export class CaptureModal extends React.Component {
     document.removeEventListener('keydown', this.handleKeyDown, false);
   }
 
+  processRawInput = str => {
+    return this.stripDecimalsAfterTwoPlaces(
+      this.stripInitialZeros(this.stripNonNumericCharacters(str))
+    );
+  };
+
+  stripNonNumericCharacters = x => {
+    return x.replace(/[^0-9.]/g, '');
+  };
+
+  stripInitialZeros = x => {
+    return x.replace(/^0+([0-9])/, '$1');
+  };
+
+  stripDecimalsAfterTwoPlaces = x => {
+    return x.replace(/(\.\d{2}).+$/, '$1');
+  };
+
   handleAmountStringChange = e => {
+    const visibleInput = e.target.value;
+    const strippedInput = this.processRawInput(visibleInput);
+    console.log('Setting local amountInput to', strippedInput);
     this.setState({
-      amountInput: e.target.value,
+      amountInput: strippedInput,
     });
-    this.props.updateAmountInput(e.target.value);
+    console.log('Updating amountInput as', strippedInput);
+    this.props.updateAmountInput(strippedInput);
   };
 
   handleSearchStringChange = e => {
@@ -64,6 +86,10 @@ export class CaptureModal extends React.Component {
     });
   };
 
+  handleFocus = e => {
+    e.target.select();
+  };
+
   incrementSelectedItem = delta => {
     const result = this.state.selectedItem + delta;
     if (result < 0 || result >= this.state.visibleItems.length) return;
@@ -81,8 +107,27 @@ export class CaptureModal extends React.Component {
       item.name.toLowerCase().includes(searchString.toLowerCase()));
   };
 
+  focusAmountInput = () => {
+    this.refs.amountInputComponent.refs.amountInput.focus();
+  };
+
+  focusCategoryInput = () => {
+    this.refs.categoryInputComponent.refs.categoryInput.focus();
+  };
+
   handleKeyDown = evt => {
     switch (evt.keyCode) {
+      case 9: // tab
+        if (
+          document.activeElement ===
+          this.refs.amountInputComponent.refs.amountInput
+        ) {
+          this.focusCategoryInput();
+        } else {
+          this.focusAmountInput();
+        }
+        evt.preventDefault();
+        break;
       case 13: // enter
         this.handleEnter();
         evt.preventDefault();
@@ -129,10 +174,14 @@ export class CaptureModal extends React.Component {
                 <CategoryInput
                   categoryInput={this.state.categoryInput}
                   handleSearchStringChange={this.handleSearchStringChange}
+                  handleFocus={this.handleFocus}
+                  ref="categoryInputComponent"
                 />
                 <AmountInput
                   amountInput={this.state.amountInput}
                   handleAmountStringChange={this.handleAmountStringChange}
+                  handleFocus={this.handleFocus}
+                  ref="amountInputComponent"
                 />
               </div>
               <CategorySelect

@@ -75,7 +75,7 @@
   display: flex;
   flex-direction: column; }
 
-.categoryPicker [class$="Label"], .amountPicker [class$="Label"] {
+.categoryPicker label, .amountPicker label {
   font-size: 14px;
   font-weight: 600;
   margin-bottom: 5px; }
@@ -83,7 +83,7 @@
 .categoryPicker input, .amountPicker input {
   box-sizing: border-box;
   border-radius: 5px;
-  border: 1px solid #959798;
+  border: 3px solid #d0d1d1;
   font-size: 28px;
   width: 94%;
   padding: 10px 12px;
@@ -93,7 +93,7 @@
 .categoryPicker input:focus, .amountPicker input:focus {
   outline: none;
   border-color: #5299e0;
-  box-shadow: inset 0 0 3px #ccc; }
+  box-shadow: inset 0 0 3px #ccc, 0 0 5px #ccc; }
 
 .amountPicker {
   text-align: right; }

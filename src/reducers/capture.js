@@ -7,13 +7,14 @@ const initialState = {
 
 export const capture = (state = initialState, action) => {
   const payload = action.payload;
-
+  
   switch (action.type) {
     case 'UPDATE_AMOUNT_INPUT':
-      if (String(Number(payload.amt)) !== payload.amt && payload.amt !== '')
-        return state;
-      return { ...state, amountInput: Number(payload.amt).toFixed(2) };
-      
+      const noCommas = payload.amt.replace(/,/g, '');
+      const format = /^\d+(\.(\d+)?)?$/;
+      if (!format.test(noCommas)) return { ...state, amountInput: '' };
+      return { ...state, amountInput: Number(noCommas).toFixed(2) };
+
     case 'UPDATE_DATE_INPUT':
       // TODO: Handle February 30-31, April 31 etc.
       // Maybe if date doesn't match itself when passed through Date()?
@@ -25,7 +26,8 @@ export const capture = (state = initialState, action) => {
       return { ...state, noteInput: String(payload.note) };
 
     case 'UPDATE_CATEGORY_INPUT':
-      // if (String(Number(payload.cat_id)) !== payload.cat_id) return state;
+      if (!/^[0-9]+$/.test(payload.cat_id))
+        return { ...state, categoryInput: '' };
       return { ...state, categoryInput: payload.cat_id };
 
     default:
