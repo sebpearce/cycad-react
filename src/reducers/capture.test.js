@@ -1,5 +1,22 @@
 import { capture } from './capture';
 
+test('accepts demical without zero prefix', () => {
+  const stateBefore = {
+    amountInput: '42.00',
+  };
+  const action = {
+    type: 'UPDATE_AMOUNT_INPUT',
+    payload: {
+      amt: '.98',
+    },
+  };
+  const stateAfter = {
+    amountInput: '0.98',
+  };
+
+  expect(capture(stateBefore, action)).toEqual(stateAfter);
+});
+
 test('ignores decimal on the end', () => {
   const stateBefore = {
     amountInput: '42.00',

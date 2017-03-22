@@ -11,7 +11,7 @@ export const capture = (state = initialState, action) => {
   switch (action.type) {
     case 'UPDATE_AMOUNT_INPUT':
       const noCommas = payload.amt.replace(/,/g, '');
-      const format = /^\d+(\.(\d+)?)?$/;
+      const format = /^(\d+)?(\.(\d+)?)?$/;
       if (!format.test(noCommas)) return { ...state, amountInput: '' };
       return { ...state, amountInput: Number(noCommas).toFixed(2) };
 

@@ -15,7 +15,7 @@ export class CaptureModal extends React.Component {
     visibleItems: [],
     selectedItem: 0,
     categoryInput: '',
-    amountInput: '',
+    amountInput: '0.00',
   };
 
   componentDidMount() {
@@ -27,21 +27,17 @@ export class CaptureModal extends React.Component {
   }
 
   processRawInput = str => {
-    return this.stripDecimalsAfterTwoPlaces(
-      this.stripInitialZeros(this.stripNonNumericCharacters(str))
-    );
+    return this.insertDecimal(this.stripNonNumericCharacters(str));
   };
 
   stripNonNumericCharacters = x => {
-    return x.replace(/[^0-9.]/g, '');
+    return x.replace(/[^0-9]/g, '');
   };
+  
+  // TODO: Format with commas?
 
-  stripInitialZeros = x => {
-    return x.replace(/^0+([0-9])/, '$1');
-  };
-
-  stripDecimalsAfterTwoPlaces = x => {
-    return x.replace(/(\.\d{2}).+$/, '$1');
+  insertDecimal = x => {
+    return x ? (parseInt(x, 10) / 100).toFixed(2) : '0.00';
   };
 
   handleAmountStringChange = e => {
@@ -113,6 +109,9 @@ export class CaptureModal extends React.Component {
   focusCategoryInput = () => {
     this.refs.categoryInputComponent.refs.categoryInput.focus();
   };
+
+  // TODO: If amountInput or categoryInput are focused,
+  // <C-J> and <C-K> simulate up/down arrow.
 
   handleKeyDown = evt => {
     switch (evt.keyCode) {
