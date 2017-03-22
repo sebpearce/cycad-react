@@ -11,3 +11,5 @@ const rootReducer = combineReducers({
 const initialState = loadState();
 
 export const store = createStore(rootReducer, initialState);
+
+store.subscribe(()=> {console.log(JSON.stringify(store.getState().capture, null, '  '))});

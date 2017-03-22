@@ -1,9 +1,16 @@
 import React from 'react';
 import styles from './CaptureModal.css';
 import DatePicker from './DatePicker';
+import AmountInput from './AmountInput';
+import CategoryInput from './CategoryInput';
 import CategorySelect from './CategorySelect';
 
 export class CaptureModal extends React.Component {
+  constructor() {
+    super();
+    this.handleKeyDown = this.handleKeyDown.bind(this);
+  }
+
   state = {
     visibleItems: [],
     selectedItem: 0,
@@ -13,23 +20,19 @@ export class CaptureModal extends React.Component {
   };
 
   componentDidMount() {
-    document.addEventListener('keydown', this.handleKeyDown.bind(this), false);
+    document.addEventListener('keydown', this.handleKeyDown, false);
   }
 
   componentWillUnmount() {
-    document.removeEventListener(
-      'keydown',
-      this.handleKeyDown.bind(this),
-      false
-    );
+    document.removeEventListener('keydown', this.handleKeyDown, false);
   }
 
   handleAmountStringChange = e => {
     this.setState({
       amountInput: e.target.value,
-    })
+    });
     this.props.updateAmountInput(e.target.value);
-  }
+  };
 
   handleSearchStringChange = e => {
     const visibleItems = this.filterVisibleItems(
@@ -41,21 +44,21 @@ export class CaptureModal extends React.Component {
       selectedItem: 0,
       categoryInput: e.target.value,
     });
-    this.props.handleCategoryChange(
+    this.props.updateCategoryInput(
       visibleItems.length > 0 ? visibleItems[0].id : ''
     );
   };
-  
-  handleEnter = e => {
+
+  handleEnter = () => {
     this.props.addTransaction();
     this.setState({
       amountInput: '',
-    })
+    });
     this.props.updateAmountInput('');
   };
 
   handleMouseOver = (i, id, event) => {
-    this.props.handleCategoryChange(id);
+    this.props.updateCategoryInput(id);
     this.setState({
       selectedItem: i,
     });
@@ -67,7 +70,7 @@ export class CaptureModal extends React.Component {
     this.setState({
       selectedItem: result,
     });
-    this.props.handleCategoryChange(this.state.visibleItems[result].id);
+    this.props.updateCategoryInput(this.state.visibleItems[result].id);
   };
 
   filterVisibleItems = (searchString, items) => {
@@ -78,7 +81,7 @@ export class CaptureModal extends React.Component {
       item.name.toLowerCase().includes(searchString.toLowerCase()));
   };
 
-  handleKeyDown(evt) {
+  handleKeyDown = evt => {
     switch (evt.keyCode) {
       case 13: // enter
         this.handleEnter();
@@ -111,7 +114,7 @@ export class CaptureModal extends React.Component {
       default:
         break;
     }
-  }
+  };
 
   render() {
     const props = this.props;
@@ -123,29 +126,14 @@ export class CaptureModal extends React.Component {
             <div className={styles.capture}>
               <DatePicker date={props.date} />
               <div className={styles.pickersContainer}>
-                <div className={styles.categoryPicker}>
-                  <div className={styles.categoryPickerLabel}>
-                    {'Category'}
-                  </div>
-                  <input
-                    type="text"
-                    tabIndex="1"
-                    autoFocus="true"
-                    className={styles.categoryPickerInput}
-                    onChange={this.handleSearchStringChange}
-                    value={this.state.categoryInput}
-                  />
-                </div>
-                <div className={styles.amountPicker}>
-                  <div className={styles.amountPickerLabel}>{'Amount'}</div>
-                  <input
-                    type="text"
-                    tabIndex="2"
-                    className={styles.amountPickerInput}
-                    onChange={this.handleAmountStringChange}
-                    value={this.state.amountInput}
-                  />
-                </div>
+                <CategoryInput
+                  categoryInput={this.state.categoryInput}
+                  handleSearchStringChange={this.handleSearchStringChange}
+                />
+                <AmountInput
+                  amountInput={this.state.amountInput}
+                  handleAmountStringChange={this.handleAmountStringChange}
+                />
               </div>
               <CategorySelect
                 items={this.state.visibleItems}

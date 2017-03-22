@@ -10,13 +10,6 @@ const updateAmountInput = amt => {
   });
 };
 
-const updateDateInput = evt => {
-  store.dispatch({
-    type: 'UPDATE_DATE_INPUT',
-    payload: { date: evt.target.value },
-  });
-};
-
 const updateNoteInput = evt => {
   store.dispatch({
     type: 'UPDATE_NOTE_INPUT',
@@ -65,7 +58,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   updateAmountInput,
-  updateDateInput,
   updateNoteInput,
   updateCategoryInput,
   addTransaction,
@@ -81,28 +73,28 @@ export class Capture extends React.Component {
   };
 
   componentDidMount() {
-    document.addEventListener('keydown', this.handleKeyDown.bind(this), false);
+    document.addEventListener('keydown', this.handleKeyDown, false);
   }
 
   componentWillUnmount() {
     document.removeEventListener(
       'keydown',
-      this.handleKeyDown.bind(this),
+      this.handleKeyDown,
       false
     );
   }
-  
+
   hideCaptureModal = () => {
     this.setState({
       isCaptureVisible: false,
-    })
-  }
+    });
+  };
 
   showCaptureModal = () => {
     this.setState({
       isCaptureVisible: true,
-    })
-  }
+    });
+  };
 
   handleKeyDown = e => {
     switch (e.keyCode) {
@@ -110,8 +102,8 @@ export class Capture extends React.Component {
         this.hideCaptureModal();
         e.preventDefault();
         break;
-      case 67: // escape
-        (!this.state.isCaptureVisible) && e.preventDefault();
+      case 67: // c
+        !this.state.isCaptureVisible && e.preventDefault();
         this.showCaptureModal();
         break;
       default:
@@ -121,12 +113,10 @@ export class Capture extends React.Component {
 
   render() {
     const {
-      transactions,
       capture,
       categories,
       addTransaction,
       updateAmountInput,
-      updateDateInput,
       updateNoteInput,
       updateCategoryInput,
       clearState,
@@ -140,16 +130,14 @@ export class Capture extends React.Component {
             note={capture.noteInput}
             cat_id={capture.categoryInput}
             updateAmountInput={updateAmountInput}
-            handleDateChange={updateDateInput}
             handleNoteChange={updateNoteInput}
-            handleCategoryChange={updateCategoryInput}
+            updateCategoryInput={updateCategoryInput}
             addTransaction={addTransaction}
             adjustDate={adjustDate}
             categories={categories}
           />}
 
         <input type="text" onChange={updateAmountInput} />
-        <input type="text" onChange={updateDateInput} />
         <input type="text" onChange={updateNoteInput} />
         <input type="text" onChange={updateCategoryInput} />
         <button
@@ -164,19 +152,6 @@ export class Capture extends React.Component {
       </div>
     );
   }
-  // }(
-  //   {
-  //     transactions,
-  //     capture,
-  //     categories,
-  //     addTransaction,
-  //     updateAmountInput,
-  //     updateDateInput,
-  //     updateNoteInput,
-  //     updateCategoryInput,
-  //     clearState,
-  //   },
-  // ) => {
 }
 
 export const CaptureContainer = connect(mapStateToProps, mapDispatchToProps)(
