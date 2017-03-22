@@ -16,7 +16,6 @@ export class CaptureModal extends React.Component {
     selectedItem: 0,
     categoryInput: '',
     amountInput: '',
-    isVisible: true,
   };
 
   componentDidMount() {

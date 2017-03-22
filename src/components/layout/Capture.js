@@ -69,7 +69,7 @@ const mapDispatchToProps = dispatch => ({
 
 export class Capture extends React.Component {
   state = {
-    isCaptureVisible: true,
+    isCaptureVisible: false,
   };
 
   componentDidMount() {
@@ -137,14 +137,6 @@ export class Capture extends React.Component {
             categories={categories}
           />}
 
-        <input type="text" onChange={updateAmountInput} />
-        <input type="text" onChange={updateNoteInput} />
-        <input type="text" onChange={updateCategoryInput} />
-        <button
-          onClick={() => {
-            addTransaction(capture);
-          }}
-        >Add!</button>
         <button onClick={clearState}>Clear state</button>
         <pre>
           {JSON.stringify(store.getState(), null, '  ')}
