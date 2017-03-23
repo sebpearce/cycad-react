@@ -51,11 +51,9 @@ export class CaptureModal extends React.Component {
   handleAmountStringChange = e => {
     const visibleInput = e.target.value;
     const strippedInput = this.processRawInput(visibleInput);
-    console.log('Setting local amountInput to', strippedInput);
     this.setState({
       amountInput: strippedInput,
     });
-    console.log('Updating amountInput as', strippedInput);
     this.props.updateAmountInput(strippedInput);
   };
 
@@ -122,12 +120,14 @@ export class CaptureModal extends React.Component {
   // <C-J> and <C-K> simulate up/down arrow.
 
   handleKeyDown = evt => {
+    const isAmountInputActive = document.activeElement ===
+      this.refs.amountInputComponent.refs.amountInput;
+    const isCategoryInputActive = document.activeElement ===
+      this.refs.categoryInputComponent.refs.categoryInput;
+
     switch (evt.keyCode) {
       case 9: // tab
-        if (
-          document.activeElement ===
-          this.refs.amountInputComponent.refs.amountInput
-        ) {
+        if (isAmountInputActive) {
           this.focusCategoryInput();
         } else {
           this.focusAmountInput();
@@ -145,6 +145,12 @@ export class CaptureModal extends React.Component {
       case 40: // down arrow
         evt.preventDefault();
         this.incrementSelectedItem(1);
+        break;
+      case 74: // j
+        if (evt.ctrlKey) this.incrementSelectedItem(1);
+        break;
+      case 75: // k
+        if (evt.ctrlKey) this.incrementSelectedItem(-1);
         break;
       case 219: // [
         evt.preventDefault();
@@ -165,6 +171,13 @@ export class CaptureModal extends React.Component {
       default:
         break;
     }
+    if (!evt.ctrlKey && evt.keyCode >= 65 && evt.keyCode <= 90 && !isCategoryInputActive) {
+      this.focusCategoryInput();
+    }
+    if (!evt.ctrlKey && evt.keyCode >= 48 && evt.keyCode <= 57 && !isAmountInputActive) {
+      this.focusAmountInput();
+    }
+    // 48-57 digits, 65-90 alpha
   };
 
   render() {
