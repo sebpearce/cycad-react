@@ -26,18 +26,26 @@ export class CaptureModal extends React.Component {
     document.removeEventListener('keydown', this.handleKeyDown, false);
   }
 
-  processRawInput = str => {
-    return this.insertDecimal(this.stripNonNumericCharacters(str));
-  };
+  pipe = (val, ...fns) => fns.reduce((prev, cur) => cur(prev), val);
+
+  processRawInput = str =>
+    this.pipe(
+      str,
+      this.stripNonNumericCharacters,
+      this.insertDecimal,
+      this.formatWithCommas
+    );
 
   stripNonNumericCharacters = x => {
     return x.replace(/[^0-9]/g, '');
   };
-  
-  // TODO: Format with commas?
 
   insertDecimal = x => {
     return x ? (parseInt(x, 10) / 100).toFixed(2) : '0.00';
+  };
+
+  formatWithCommas = x => {
+    return x.replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
   };
 
   handleAmountStringChange = e => {
