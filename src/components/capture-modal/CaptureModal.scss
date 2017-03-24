@@ -9,7 +9,7 @@ $date-picker-cell-selected-bg: #fff;
 $date-picker-cell-selected-color: $capture-base-text-color;
 
 .captureOverlay {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;

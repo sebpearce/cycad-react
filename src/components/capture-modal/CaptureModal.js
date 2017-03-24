@@ -4,19 +4,25 @@ import DatePicker from './DatePicker';
 import AmountInput from './AmountInput';
 import CategoryInput from './CategoryInput';
 import CategorySelect from './CategorySelect';
+import { Howl } from 'howler';
+import plinksrc from '../../audio/plink-1.mp3';
 
 export class CaptureModal extends React.Component {
   constructor() {
     super();
     this.handleKeyDown = this.handleKeyDown.bind(this);
-  }
 
-  state = {
-    visibleItems: [],
-    selectedItem: 0,
-    categoryInput: '',
-    amountInput: '0.00',
-  };
+    this.state = {
+      visibleItems: [],
+      selectedItem: 0,
+      categoryInput: '',
+      amountInput: '0.00',
+    };
+
+    this.plink = new Howl({
+      src: plinksrc,
+    });
+  }
 
   componentDidMount() {
     document.addEventListener('keydown', this.handleKeyDown, false);
@@ -72,12 +78,15 @@ export class CaptureModal extends React.Component {
     );
   };
 
+  // TODO: Don't submit if required input captures are blank
+
   handleEnter = () => {
     this.props.addTransaction();
     this.setState({
       amountInput: '',
     });
     this.props.updateAmountInput('');
+    this.plink.play();
   };
 
   handleMouseOver = (i, id, event) => {
@@ -115,9 +124,6 @@ export class CaptureModal extends React.Component {
   focusCategoryInput = () => {
     this.refs.categoryInputComponent.refs.categoryInput.focus();
   };
-
-  // TODO: If amountInput or categoryInput are focused,
-  // <C-J> and <C-K> simulate up/down arrow.
 
   handleKeyDown = evt => {
     const isAmountInputActive = document.activeElement ===
@@ -171,10 +177,20 @@ export class CaptureModal extends React.Component {
       default:
         break;
     }
-    if (!evt.ctrlKey && evt.keyCode >= 65 && evt.keyCode <= 90 && !isCategoryInputActive) {
+    if (
+      !evt.ctrlKey &&
+      evt.keyCode >= 65 &&
+      evt.keyCode <= 90 &&
+      !isCategoryInputActive
+    ) {
       this.focusCategoryInput();
     }
-    if (!evt.ctrlKey && evt.keyCode >= 48 && evt.keyCode <= 57 && !isAmountInputActive) {
+    if (
+      !evt.ctrlKey &&
+      evt.keyCode >= 48 &&
+      evt.keyCode <= 57 &&
+      !isAmountInputActive
+    ) {
       this.focusAmountInput();
     }
     // 48-57 digits, 65-90 alpha
