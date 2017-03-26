@@ -1,7 +1,8 @@
 import React from 'react';
 import styles from './TransactionList.css';
 import { formatLongDate } from '../../helpers/date-helpers';
-import { formatWithCommas } from '../../helpers/currency-helpers';
+import { formatWithCommas, addPlusSignIfPositive } from '../../helpers/currency-helpers';
+import { pipe } from '../../helpers/misc-helpers';
 
 const getCategoryName = (categories, id) => {
   return categories.find(cat => cat.id === id).name;
@@ -22,7 +23,14 @@ const TransactionListRow = props => {
         {getCategoryName(props.categories, props.row.cat_id)}
       </div>
       <div className={amtClass}>
-        {replaceHyphenWithMinusSign(formatWithCommas(props.row.amt))}
+        {
+          pipe(
+            props.row.amt,
+            formatWithCommas,
+            replaceHyphenWithMinusSign,
+            addPlusSignIfPositive,
+          )
+        }
       </div>
     </div>
   );

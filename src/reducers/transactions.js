@@ -2,6 +2,7 @@ import { v4 } from 'uuid';
 
 export const transactions = (state = [], action) => {
   switch (action.type) {
+    // TODO: should not accept 0.00
     case 'ADD_TRANSACTION':
       const newTransaction = {
         id: v4(),

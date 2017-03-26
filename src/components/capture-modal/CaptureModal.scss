@@ -153,6 +153,7 @@ $date-picker-cell-selected-color: $capture-base-text-color;
   }
   .amountPickerInputPositive {
     border-color: $palette-cash;
+    color: $palette-cash;
     &:focus {
       border-color: $palette-cash;
     }

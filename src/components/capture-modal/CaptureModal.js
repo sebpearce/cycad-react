@@ -6,8 +6,10 @@ import CategoryInput from './CategoryInput';
 import CategorySelect from './CategorySelect';
 import { Motion, spring } from 'react-motion';
 import { formatWithCommas } from '../../helpers/currency-helpers';
+import { pipe } from '../../helpers/misc-helpers';
 import { Howl } from 'howler';
 import plinksrc from '../../audio/plink-1.mp3';
+import incomeSoundSrc from '../../audio/income.mp3';
 
 export class CaptureModal extends React.Component {
   constructor() {
@@ -23,9 +25,8 @@ export class CaptureModal extends React.Component {
       amountWarning: false,
     };
 
-    this.plink = new Howl({
-      src: plinksrc,
-    });
+    this.plink = new Howl({ src: plinksrc });
+    this.incomeSound = new Howl({ src: incomeSoundSrc });
   }
 
   componentDidMount() {
@@ -36,10 +37,8 @@ export class CaptureModal extends React.Component {
     document.removeEventListener('keydown', this.handleKeyDown, false);
   }
 
-  pipe = (val, ...fns) => fns.reduce((prev, cur) => cur(prev), val);
-  
   makePositive = x =>
-    this.pipe(
+    pipe(
       x,
       this.stripNonNumericCharacters,
       this.insertDecimal,
@@ -47,7 +46,7 @@ export class CaptureModal extends React.Component {
     );
 
   processRawInput = x =>
-    this.pipe(
+    pipe(
       x,
       this.stripNonNumericCharacters,
       this.insertDecimal,
@@ -67,7 +66,7 @@ export class CaptureModal extends React.Component {
     return '-'.concat(x);
   }
 
-  validateAmount = x => /^-?[0-9]+.[0-9]{2}$/.test(x);
+  validateAmount = x => x !== '0.00' && /^-?[0-9]+.[0-9]{2}$/.test(x);
 
   handleAmountStringChange = e => {
     const visibleInput = e.target.value;
@@ -199,8 +198,10 @@ export class CaptureModal extends React.Component {
           const positiveAmt = this.makePositive(this.state.amountInput);
           this.setState({
             amountInput: positiveAmt,
+            amountWarning: false,
           })
           this.props.updateAmountInput(positiveAmt);
+          this.incomeSound.play();
           evt.preventDefault();
           // turn green
         }

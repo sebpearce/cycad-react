@@ -1,5 +1,7 @@
 import React from 'react';
 import styles from './CaptureModal.css';
+import { addPlusSignIfPositive } from '../../helpers/currency-helpers';
+import { pipe } from '../../helpers/misc-helpers';
 
 class AmountInput extends React.Component {
   stripNegativeSign(x) {
@@ -26,7 +28,13 @@ class AmountInput extends React.Component {
           type="text"
           className={className}
           onChange={this.props.handleAmountStringChange}
-          value={this.stripNegativeSign(this.props.amountAsString)}
+          value={
+            pipe(
+              this.props.amountAsString,
+              addPlusSignIfPositive,
+              this.stripNegativeSign,
+            )
+          }
           ref={(input) => { this.amountInput = input; }}
           onFocus={this.props.handleFocus}
         />

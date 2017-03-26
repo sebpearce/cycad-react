@@ -107,10 +107,11 @@
   border-color: #EB6D6D; }
 
 .amountPicker .amountPickerInputPositive {
-  border-color: #9FD283; }
+  border-color: #49C06C;
+  color: #49C06C; }
 
 .amountPicker .amountPickerInputPositive:focus {
-  border-color: #9FD283; }
+  border-color: #49C06C; }
 
 .categorySelect {
   display: flex;
