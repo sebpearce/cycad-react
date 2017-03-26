@@ -82,6 +82,10 @@ export class CaptureModal extends React.Component {
   // TODO: Don't submit if required input captures are blank
 
   handleEnter = () => {
+    if (!this.props.date || !this.props.cat_id || Number(this.props.amt) <= 0) {
+      console.log('Missing data input.');
+      return false;
+    }
     this.props.addTransaction();
     this.setState({
       amountInput: '',
