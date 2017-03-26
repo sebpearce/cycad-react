@@ -3,12 +3,15 @@ import styles from './CaptureModal.css';
 
 class AmountInput extends React.Component {
   render() {
+    const suffix = this.props.amountWarning ? 'Warning' : '';
+    const className = styles['amountPickerInput' + suffix];
+
     return (
       <div className={styles.amountPicker}>
         <label>{'Amount'}</label>
         <input
           type="text"
-          className={styles.amountPickerInput}
+          className={className}
           onChange={this.props.handleAmountStringChange}
           value={this.props.amountInput}
           ref={(input) => { this.amountInput = input; }}

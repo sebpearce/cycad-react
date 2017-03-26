@@ -20,6 +20,8 @@ export class CaptureModal extends React.Component {
       selectedItem: 0,
       categoryInput: '',
       amountInput: '0.00',
+      categoryWarning: false,
+      amountWarning: false,
     };
 
     this.plink = new Howl({
@@ -82,13 +84,28 @@ export class CaptureModal extends React.Component {
   };
 
   handleEnter = () => {
-    if (!this.props.date || !this.props.cat_id || Number(this.props.amt) <= 0) {
-      console.log('Missing data input.');
+    if (!this.props.cat_id) {
+      this.setState({
+        categoryWarning: true,
+        amountWarning: Number(this.props.amt) <= 0,
+      });
+      this.focusCategoryInput();
+      return false;
+    }
+    if (Number(this.props.amt) <= 0) {
+      this.setState({
+        amountWarning: true,
+        categoryWarning: !this.props.cat_id,
+      });
+
+      this.focusAmountInput();
       return false;
     }
     this.props.addTransaction();
     this.setState({
       amountInput: '',
+      categoryWarning: false,
+      amountWarning: false,
     });
     this.props.updateAmountInput('');
     this.plink.play();
@@ -217,13 +234,19 @@ export class CaptureModal extends React.Component {
                       categoryInput={this.state.categoryInput}
                       handleSearchStringChange={this.handleSearchStringChange}
                       handleFocus={this.handleFocus}
-                      ref={(input) => { this.categoryInputComponent = input;}}
+                      categoryWarning={this.state.categoryWarning}
+                      ref={input => {
+                        this.categoryInputComponent = input;
+                      }}
                     />
                     <AmountInput
                       amountInput={this.state.amountInput}
                       handleAmountStringChange={this.handleAmountStringChange}
                       handleFocus={this.handleFocus}
-                      ref={(input) => { this.amountInputComponent = input;}}
+                      amountWarning={this.state.amountWarning}
+                      ref={input => {
+                        this.amountInputComponent = input;
+                      }}
                     />
                   </div>
                   <CategorySelect

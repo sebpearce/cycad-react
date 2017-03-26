@@ -127,6 +127,13 @@ $date-picker-cell-selected-color: $capture-base-text-color;
 
 .categoryPicker {
   @extend %picker;
+  .categoryPickerInput {
+  }
+  .categoryPickerInputWarning {
+    &:focus {
+      border-color: $palette-negative;
+    }
+  }
 }
 
 .amountPicker {
@@ -135,6 +142,13 @@ $date-picker-cell-selected-color: $capture-base-text-color;
   input {
     margin-left: auto;
     text-align: right;
+  }
+  .amountPickerInput {
+  }
+  .amountPickerInputWarning {
+    &:focus {
+      border-color: $palette-negative;
+    }
   }
 }
 
