@@ -69,12 +69,15 @@ $date-picker-cell-selected-color: $capture-base-text-color;
   border: $date-picker-cell-border;
   border-radius: 5px;
 
-  + .-active {
-    color: $capture-base-text-color;
-    background: #fff;
-    border: 2px solid $palette-brightblue;
-    box-shadow: 0 0 5px #ccc;
+  &:hover {
+    cursor: pointer;
   }
+  // + .-active {
+  //   color: $capture-base-text-color;
+  //   background: #fff;
+  //   border: 2px solid $palette-brightblue;
+  //   box-shadow: 0 0 5px #ccc;
+  // }
 }
 
 .datePickerCellSelected {

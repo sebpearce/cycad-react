@@ -3,7 +3,6 @@ import styles from './CaptureModal.css';
 
 class CategoryInput extends React.Component {
   render() {
-    // TODO: Handle onClick for direct clicks on days
     return (
       <div className={styles.categoryPicker}>
         <label>{'Category'}</label>

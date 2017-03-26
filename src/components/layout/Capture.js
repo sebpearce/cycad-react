@@ -30,7 +30,7 @@ const getISODate = dateObj => {
 
 const adjustDate = delta => {
   const dateObj = new Date(store.getState().capture.dateInput);
-  const newDate = new Date(dateObj.getTime() + delta * 864e5);
+  const newDate = new Date(dateObj.getTime() + delta * 8.64e7);
   store.dispatch({
     type: 'UPDATE_DATE_INPUT',
     payload: {

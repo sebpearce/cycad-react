@@ -53,11 +53,8 @@
   border: 1px solid #bcbdbe;
   border-radius: 5px; }
 
-.datePickerCell + .-active, .datePickerCellSelected + .-active {
-  color: #3B3E41;
-  background: #fff;
-  border: 2px solid #5299e0;
-  box-shadow: 0 0 5px #ccc; }
+.datePickerCell:hover, .datePickerCellSelected:hover {
+  cursor: pointer; }
 
 .datePickerCellSelected {
   border: 3px solid #5299e0;

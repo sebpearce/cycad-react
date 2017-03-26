@@ -8,6 +8,8 @@ import { Motion, spring } from 'react-motion';
 import { Howl } from 'howler';
 import plinksrc from '../../audio/plink-1.mp3';
 
+// TODO: Props validation!
+
 export class CaptureModal extends React.Component {
   constructor() {
     super();
@@ -78,8 +80,6 @@ export class CaptureModal extends React.Component {
       visibleItems.length > 0 ? visibleItems[0].id : ''
     );
   };
-
-  // TODO: Don't submit if required input captures are blank
 
   handleEnter = () => {
     if (!this.props.date || !this.props.cat_id || Number(this.props.amt) <= 0) {
@@ -211,7 +211,7 @@ export class CaptureModal extends React.Component {
             {({ x }) => (
               <div className={styles.captureContainer}>
                 <div className={styles.capture}>
-                  <DatePicker date={props.date} />
+                  <DatePicker date={props.date} adjustDate={props.adjustDate} />
                   <div className={styles.pickersContainer}>
                     <CategoryInput
                       categoryInput={this.state.categoryInput}
