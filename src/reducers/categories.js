@@ -26,6 +26,10 @@ const initialState = [
   { id: '24', name: 'One-offs' },
   { id: '25', name: 'Medical' },
   { id: '26', name: 'Other' },
+  { id: '27', name: 'Salary' },
+  { id: '28', name: 'Partner’s salary' },
+  { id: '29', name: 'Tax return' },
+  { id: '30', name: 'Windfall' },
 ];
 
 export const categories = (state = initialState, action) => {
