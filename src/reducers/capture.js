@@ -1,6 +1,8 @@
+const today = new Date();
+let msOffsetFromUTC = today.getTimezoneOffset() * 6e4;
 const initialState = {
   amountInput: '0.00',
-  dateInput: new Date().toISOString().slice(0, 10),
+  dateInput: new Date(today - (msOffsetFromUTC)).toISOString().slice(0, 10),
   noteInput: '',
   categoryInput: '',
 };
