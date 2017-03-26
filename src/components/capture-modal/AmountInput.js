@@ -22,4 +22,11 @@ class AmountInput extends React.Component {
   }
 }
 
+AmountInput.propTypes = {
+  amountInput: React.PropTypes.string.isRequired,
+  handleAmountStringChange: React.PropTypes.func.isRequired,
+  handleFocus: React.PropTypes.func.isRequired,
+  amountWarning: React.PropTypes.bool.isRequired,
+}
+
 export default AmountInput;

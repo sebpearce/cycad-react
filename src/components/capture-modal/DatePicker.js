@@ -78,4 +78,9 @@ const DatePicker = props => {
   );
 };
 
+DatePicker.propTypes = {
+  date: React.PropTypes.string.isRequired,
+  adjustDate: React.PropTypes.func.isRequired,
+}
+
 export default DatePicker;

@@ -148,6 +148,9 @@ export class CaptureModal extends React.Component {
   };
 
   handleKeyDown = evt => {
+    // TODO: Use <C-N> and <C-P> instead of J and K?
+    // TODO: Clear categoryinput on submit?
+
     const isAmountInputActive = document.activeElement ===
       this.amountInputComponent.amountInput;
     const isCategoryInputActive = document.activeElement ===
@@ -262,4 +265,17 @@ export class CaptureModal extends React.Component {
       </div>
     );
   }
+}
+
+CaptureModal.propTypes = {
+  date: React.PropTypes.string.isRequired,
+  amt: React.PropTypes.string.isRequired,
+  note: React.PropTypes.string.isRequired,
+  cat_id: React.PropTypes.string.isRequired,
+  updateAmountInput: React.PropTypes.func.isRequired,
+  handleNoteChange: React.PropTypes.func.isRequired,
+  updateCategoryInput: React.PropTypes.func.isRequired,
+  addTransaction: React.PropTypes.func.isRequired,
+  adjustDate: React.PropTypes.func.isRequired,
+  categories: React.PropTypes.array.isRequired,
 }

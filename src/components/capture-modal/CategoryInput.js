@@ -23,4 +23,11 @@ class CategoryInput extends React.Component {
   }
 }
 
+CategoryInput.propTypes = {
+  categoryInput: React.PropTypes.string.isRequired,
+  handleSearchStringChange: React.PropTypes.func.isRequired,
+  handleFocus: React.PropTypes.func.isRequired,
+  categoryWarning: React.PropTypes.bool.isRequired,
+}
+
 export default CategoryInput;

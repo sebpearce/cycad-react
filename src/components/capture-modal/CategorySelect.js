@@ -25,4 +25,10 @@ const CategorySelect = props => {
   );
 };
 
+CategorySelect.propTypes = {
+  items: React.PropTypes.array.isRequired,
+  selectedItem: React.PropTypes.number.isRequired,
+  handleMouseOver: React.PropTypes.func.isRequired,
+};
+
 export default CategorySelect;
