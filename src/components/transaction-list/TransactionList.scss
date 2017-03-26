@@ -1,0 +1,34 @@
+@import '../../global.scss';
+
+$width: 400px;
+
+.transactionListContainer {
+  max-width: $width;
+  padding: 30px;
+}
+
+.transactionListDay {
+  padding-bottom: 15px;
+}
+
+.transactionListDayDate {
+  font-size: 17px;
+  font-weight: $weight-bold;
+  padding-bottom: 3px;
+}
+
+.transactionListRow {
+  font-size: 27px;
+  display: flex;
+}
+
+.transactionListRowCat {
+  flex: 5;
+  color: mix(#fff, $palette-text, 70%);
+}
+
+.transactionListRowAmt {
+  flex: 3;
+  font-weight: $weight-bold;
+  text-align: right;
+}

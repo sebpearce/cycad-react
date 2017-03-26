@@ -5,6 +5,7 @@ import AmountInput from './AmountInput';
 import CategoryInput from './CategoryInput';
 import CategorySelect from './CategorySelect';
 import { Motion, spring } from 'react-motion';
+import { formatWithCommas } from '../../helpers/currency-helpers';
 import { Howl } from 'howler';
 import plinksrc from '../../audio/plink-1.mp3';
 
@@ -30,7 +31,7 @@ export class CaptureModal extends React.Component {
   componentDidMount() {
     document.addEventListener('keydown', this.handleKeyDown, false);
   }
-
+  
   componentWillUnmount() {
     document.removeEventListener('keydown', this.handleKeyDown, false);
   }
@@ -42,7 +43,7 @@ export class CaptureModal extends React.Component {
       str,
       this.stripNonNumericCharacters,
       this.insertDecimal,
-      this.formatWithCommas
+      formatWithCommas
     );
 
   stripNonNumericCharacters = x => {
@@ -51,10 +52,6 @@ export class CaptureModal extends React.Component {
 
   insertDecimal = x => {
     return x ? (parseInt(x, 10) / 100).toFixed(2) : '0.00';
-  };
-
-  formatWithCommas = x => {
-    return x.replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
   };
 
   handleAmountStringChange = e => {

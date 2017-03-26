@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { CaptureModal } from '../capture-modal/CaptureModal';
 import { store } from '../../store';
+import TransactionList from '../transaction-list/TransactionList';
 
 const updateAmountInput = amt => {
   store.dispatch({
@@ -50,6 +51,25 @@ const addTransaction = () => {
   store.dispatch({ type: 'ADD_TRANSACTION', payload: newTransaction });
 };
 
+const getTransactionsByDate = () => {
+  const transactions = store.getState().transactions;
+  const transactionsByDate = transactions.reduce(
+    (total, item) => {
+      const date = item['date'];
+      const keys = Object.keys(item);
+      const itemWithoutDate = keys.filter(key => key !== 'date').reduce((acc, key) => {
+        acc[key] = item[key];
+        return acc;
+      }, {});
+      total[date] = total[date] || [];
+      total[date].push(itemWithoutDate);
+      return total;
+    },
+    {}
+  );
+  return transactionsByDate;
+};
+
 const mapStateToProps = state => ({
   transactions: state.transactions,
   capture: state.capture,
@@ -77,11 +97,7 @@ export class Capture extends React.Component {
   }
 
   componentWillUnmount() {
-    document.removeEventListener(
-      'keydown',
-      this.handleKeyDown,
-      false
-    );
+    document.removeEventListener('keydown', this.handleKeyDown, false);
   }
 
   hideCaptureModal = () => {
@@ -138,9 +154,10 @@ export class Capture extends React.Component {
           />}
 
         <button onClick={clearState}>Clear state</button>
-        <pre>
+        <TransactionList transactionsByDate={getTransactionsByDate()} categories={categories} />
+        {/* <pre>
           {JSON.stringify(store.getState(), null, '  ')}
-        </pre>
+        </pre> */}
       </div>
     );
   }

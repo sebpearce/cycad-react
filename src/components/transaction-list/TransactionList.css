@@ -1,0 +1,24 @@
+.transactionListContainer {
+  max-width: 400px;
+  padding: 30px; }
+
+.transactionListDay {
+  padding-bottom: 15px; }
+
+.transactionListDayDate {
+  font-size: 17px;
+  font-weight: 600;
+  padding-bottom: 3px; }
+
+.transactionListRow {
+  font-size: 27px;
+  display: flex; }
+
+.transactionListRowCat {
+  flex: 5;
+  color: #c4c5c6; }
+
+.transactionListRowAmt {
+  flex: 3;
+  font-weight: 600;
+  text-align: right; }
