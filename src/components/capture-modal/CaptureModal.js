@@ -150,8 +150,6 @@ export class CaptureModal extends React.Component {
   };
 
   handleKeyDown = evt => {
-    // TODO: Clear categoryinput on submit?
-
     const isAmountInputActive = document.activeElement ===
       this.amountInputComponent.amountInput;
     const isCategoryInputActive = document.activeElement ===

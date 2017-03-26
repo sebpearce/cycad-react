@@ -1,8 +1,6 @@
 import React from 'react';
 import styles from './CaptureModal.css';
 
-// TODO: Handle onClick for direct clicks on days
-
 const months = [
   'January',
   'February',
@@ -64,7 +62,6 @@ const Picker = ({ selected, adjustDate }) => {
 };
 
 const DatePicker = props => {
-  // TODO: Handle onClick for direct clicks on days
   return (
     <div>
       <div className={styles.tips}>

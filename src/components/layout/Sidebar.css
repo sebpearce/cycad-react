@@ -1,6 +1,5 @@
 .sidebar {
   flex: 0 0 250px;
-  color: white;
   background: #3B3E41; }
 
 ul {
@@ -18,13 +17,16 @@ li {
 
 a {
   text-decoration: none;
-  color: inherit;
+  color: #626567;
   font-size: 21px;
   font-weight: bold;
-  transition: background 0.1s;
+  transition: background 0.1s, color 0.1s;
   background: transparent; }
-  a:hover {
-    background: #45484b; }
+
+a:hover {
+  background: #45484b;
+  color: #9d9fa0; }
 
 a.selected {
-  background: #5D758E; }
+  background: #5D758E;
+  color: white; }
