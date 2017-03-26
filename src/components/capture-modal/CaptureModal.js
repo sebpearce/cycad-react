@@ -4,6 +4,7 @@ import DatePicker from './DatePicker';
 import AmountInput from './AmountInput';
 import CategoryInput from './CategoryInput';
 import CategorySelect from './CategorySelect';
+import { Motion, spring } from 'react-motion';
 import { Howl } from 'howler';
 import plinksrc from '../../audio/plink-1.mp3';
 
@@ -118,18 +119,18 @@ export class CaptureModal extends React.Component {
   };
 
   focusAmountInput = () => {
-    this.refs.amountInputComponent.refs.amountInput.focus();
+    this.amountInputComponent.amountInput.focus();
   };
 
   focusCategoryInput = () => {
-    this.refs.categoryInputComponent.refs.categoryInput.focus();
+    this.categoryInputComponent.categoryInput.focus();
   };
 
   handleKeyDown = evt => {
     const isAmountInputActive = document.activeElement ===
-      this.refs.amountInputComponent.refs.amountInput;
+      this.amountInputComponent.amountInput;
     const isCategoryInputActive = document.activeElement ===
-      this.refs.categoryInputComponent.refs.categoryInput;
+      this.categoryInputComponent.categoryInput;
 
     switch (evt.keyCode) {
       case 9: // tab
@@ -202,30 +203,34 @@ export class CaptureModal extends React.Component {
     return (
       <div>
         <div className={styles.captureOverlay}>
-          <div className={styles.captureContainer}>
-            <div className={styles.capture}>
-              <DatePicker date={props.date} />
-              <div className={styles.pickersContainer}>
-                <CategoryInput
-                  categoryInput={this.state.categoryInput}
-                  handleSearchStringChange={this.handleSearchStringChange}
-                  handleFocus={this.handleFocus}
-                  ref="categoryInputComponent"
-                />
-                <AmountInput
-                  amountInput={this.state.amountInput}
-                  handleAmountStringChange={this.handleAmountStringChange}
-                  handleFocus={this.handleFocus}
-                  ref="amountInputComponent"
-                />
+          <Motion style={{ x: spring(Number(this.props.amt) > 0 ? 1.4 : 1) }}>
+            {({ x }) => (
+              <div className={styles.captureContainer}>
+                <div className={styles.capture}>
+                  <DatePicker date={props.date} />
+                  <div className={styles.pickersContainer}>
+                    <CategoryInput
+                      categoryInput={this.state.categoryInput}
+                      handleSearchStringChange={this.handleSearchStringChange}
+                      handleFocus={this.handleFocus}
+                      ref={(input) => { this.categoryInputComponent = input;}}
+                    />
+                    <AmountInput
+                      amountInput={this.state.amountInput}
+                      handleAmountStringChange={this.handleAmountStringChange}
+                      handleFocus={this.handleFocus}
+                      ref={(input) => { this.amountInputComponent = input;}}
+                    />
+                  </div>
+                  <CategorySelect
+                    items={this.state.visibleItems}
+                    selectedItem={this.state.selectedItem}
+                    handleMouseOver={this.handleMouseOver.bind(this)}
+                  />
+                </div>
               </div>
-              <CategorySelect
-                items={this.state.visibleItems}
-                selectedItem={this.state.selectedItem}
-                handleMouseOver={this.handleMouseOver.bind(this)}
-              />
-            </div>
-          </div>
+            )}
+          </Motion>
         </div>
       </div>
     );

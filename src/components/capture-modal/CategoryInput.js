@@ -13,7 +13,7 @@ class CategoryInput extends React.Component {
           className={styles.categoryPickerInput}
           onChange={this.props.handleSearchStringChange}
           value={this.props.categoryInput}
-          ref="categoryInput"
+          ref={(input) => { this.categoryInput = input; }}
           onFocus={this.props.handleFocus}
         />
       </div>

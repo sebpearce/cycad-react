@@ -11,7 +11,7 @@ class AmountInput extends React.Component {
           className={styles.amountPickerInput}
           onChange={this.props.handleAmountStringChange}
           value={this.props.amountInput}
-          ref="amountInput"
+          ref={(input) => { this.amountInput = input; }}
           onFocus={this.props.handleFocus}
         />
       </div>
