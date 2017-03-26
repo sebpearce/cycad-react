@@ -102,10 +102,14 @@ export class CaptureModal extends React.Component {
     this.props.addTransaction();
     this.setState({
       amountInput: '',
+      categoryInput: '',
+      visibleItems: [],
       categoryWarning: false,
       amountWarning: false,
     });
     this.props.updateAmountInput('');
+    this.props.updateCategoryInput('');
+    this.focusCategoryInput();
     this.plink.play();
   };
 
