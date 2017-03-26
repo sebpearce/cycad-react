@@ -8,8 +8,6 @@ import { Motion, spring } from 'react-motion';
 import { Howl } from 'howler';
 import plinksrc from '../../audio/plink-1.mp3';
 
-// TODO: Props validation!
-
 export class CaptureModal extends React.Component {
   constructor() {
     super();
@@ -148,7 +146,6 @@ export class CaptureModal extends React.Component {
   };
 
   handleKeyDown = evt => {
-    // TODO: Use <C-N> and <C-P> instead of J and K?
     // TODO: Clear categoryinput on submit?
 
     const isAmountInputActive = document.activeElement ===
@@ -177,10 +174,10 @@ export class CaptureModal extends React.Component {
         evt.preventDefault();
         this.incrementSelectedItem(1);
         break;
-      case 74: // j
+      case 78: // n
         if (evt.ctrlKey) this.incrementSelectedItem(1);
         break;
-      case 75: // k
+      case 80: // p
         if (evt.ctrlKey) this.incrementSelectedItem(-1);
         break;
       case 219: // [
