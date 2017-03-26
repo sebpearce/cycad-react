@@ -70,6 +70,10 @@ const getTransactionsByDate = () => {
   return transactionsByDate;
 };
 
+const getCapturedAmountFromStore = () => {
+  return store.getState().capture.amountInput;
+}
+
 const mapStateToProps = state => ({
   transactions: state.transactions,
   capture: state.capture,
@@ -82,6 +86,7 @@ const mapDispatchToProps = dispatch => ({
   updateCategoryInput,
   addTransaction,
   adjustDate,
+  getCapturedAmountFromStore,
   clearState() {
     dispatch({ type: 'CLEAR_ALL_TRANSACTIONS' });
   },
@@ -148,6 +153,7 @@ export class Capture extends React.Component {
             updateAmountInput={updateAmountInput}
             handleNoteChange={updateNoteInput}
             updateCategoryInput={updateCategoryInput}
+            getCapturedAmountFromStore={getCapturedAmountFromStore}
             addTransaction={addTransaction}
             adjustDate={adjustDate}
             categories={categories}
@@ -155,9 +161,9 @@ export class Capture extends React.Component {
 
         <button onClick={clearState}>Clear state</button>
         <TransactionList transactionsByDate={getTransactionsByDate()} categories={categories} />
-        {/* <pre>
+        <pre>
           {JSON.stringify(store.getState(), null, '  ')}
-        </pre> */}
+        </pre>
       </div>
     );
   }

@@ -151,6 +151,12 @@ $date-picker-cell-selected-color: $capture-base-text-color;
       border-color: $palette-negative;
     }
   }
+  .amountPickerInputPositive {
+    border-color: $palette-cash;
+    &:focus {
+      border-color: $palette-cash;
+    }
+  }
 }
 
 .categorySelect {

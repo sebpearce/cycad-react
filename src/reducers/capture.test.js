@@ -106,6 +106,23 @@ test('interpets non-numerical input as nothing', () => {
   expect(capture(stateBefore, action)).toEqual(stateAfter);
 });
 
+test('accepts negative numbers', () => {
+  const stateBefore = {
+    amountInput: '123.00',
+  };
+  const action = {
+    type: 'UPDATE_AMOUNT_INPUT',
+    payload: {
+      amt: '-72.00',
+    },
+  };
+  const stateAfter = {
+    amountInput: '-72.00',
+  };
+
+  expect(capture(stateBefore, action)).toEqual(stateAfter);
+});
+
 test('updates the date input', () => {
   const stateBefore = {
     dateInput: '2017-03-01',

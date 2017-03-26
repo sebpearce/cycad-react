@@ -31,19 +31,28 @@ export class CaptureModal extends React.Component {
   componentDidMount() {
     document.addEventListener('keydown', this.handleKeyDown, false);
   }
-  
+
   componentWillUnmount() {
     document.removeEventListener('keydown', this.handleKeyDown, false);
   }
 
   pipe = (val, ...fns) => fns.reduce((prev, cur) => cur(prev), val);
-
-  processRawInput = str =>
+  
+  makePositive = x =>
     this.pipe(
-      str,
+      x,
       this.stripNonNumericCharacters,
       this.insertDecimal,
-      formatWithCommas
+      formatWithCommas,
+    );
+
+  processRawInput = x =>
+    this.pipe(
+      x,
+      this.stripNonNumericCharacters,
+      this.insertDecimal,
+      formatWithCommas,
+      this.prependNegativeSign,
     );
 
   stripNonNumericCharacters = x => {
@@ -53,6 +62,12 @@ export class CaptureModal extends React.Component {
   insertDecimal = x => {
     return x ? (parseInt(x, 10) / 100).toFixed(2) : '0.00';
   };
+
+  prependNegativeSign = x => {
+    return '-'.concat(x);
+  }
+
+  validateAmount = x => /^-?[0-9]+.[0-9]{2}$/.test(x);
 
   handleAmountStringChange = e => {
     const visibleInput = e.target.value;
@@ -82,12 +97,12 @@ export class CaptureModal extends React.Component {
     if (!this.props.cat_id) {
       this.setState({
         categoryWarning: true,
-        amountWarning: Number(this.props.amt) <= 0,
+        amountWarning: !this.validateAmount(this.props.amt),
       });
       this.focusCategoryInput();
       return false;
     }
-    if (Number(this.props.amt) <= 0) {
+    if (!this.validateAmount(this.props.amt)) {
       this.setState({
         amountWarning: true,
         categoryWarning: !this.props.cat_id,
@@ -179,6 +194,17 @@ export class CaptureModal extends React.Component {
       case 80: // p
         if (evt.ctrlKey) this.incrementSelectedItem(-1);
         break;
+      case 187: // +
+        if (evt.shiftKey) {
+          const positiveAmt = this.makePositive(this.state.amountInput);
+          this.setState({
+            amountInput: positiveAmt,
+          })
+          this.props.updateAmountInput(positiveAmt);
+          evt.preventDefault();
+          // turn green
+        }
+        break;
       case 219: // [
         evt.preventDefault();
         if (evt.shiftKey) {
@@ -239,7 +265,7 @@ export class CaptureModal extends React.Component {
                       }}
                     />
                     <AmountInput
-                      amountInput={this.state.amountInput}
+                      amountAsString={this.state.amountInput}
                       handleAmountStringChange={this.handleAmountStringChange}
                       handleFocus={this.handleFocus}
                       amountWarning={this.state.amountWarning}
@@ -274,4 +300,5 @@ CaptureModal.propTypes = {
   addTransaction: React.PropTypes.func.isRequired,
   adjustDate: React.PropTypes.func.isRequired,
   categories: React.PropTypes.array.isRequired,
+  getCapturedAmountFromStore:React.PropTypes.func.isRequired,
 }

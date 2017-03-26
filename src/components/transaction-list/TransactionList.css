@@ -18,7 +18,10 @@
   flex: 5;
   color: #c4c5c6; }
 
-.transactionListRowAmt {
+.transactionListRowAmt, .transactionListRowAmtPositive {
   flex: 3;
   font-weight: 600;
   text-align: right; }
+
+.transactionListRowAmtPositive {
+  color: #9FD283; }
