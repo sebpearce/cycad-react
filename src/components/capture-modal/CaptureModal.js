@@ -193,6 +193,9 @@ export class CaptureModal extends React.Component {
       case 80: // p
         if (evt.ctrlKey) this.incrementSelectedItem(-1);
         break;
+      case 84: // t
+        if (evt.ctrlKey) this.props.setDateToToday();
+        break;
       case 187: // +
         if (evt.shiftKey) {
           const positiveAmt = this.makePositive(this.state.amountInput);
@@ -302,4 +305,5 @@ CaptureModal.propTypes = {
   adjustDate: React.PropTypes.func.isRequired,
   categories: React.PropTypes.array.isRequired,
   getCapturedAmountFromStore:React.PropTypes.func.isRequired,
+  setDateToToday: React.PropTypes.func.isRequired,
 }

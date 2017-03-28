@@ -40,6 +40,17 @@ const adjustDate = delta => {
   });
 };
 
+const setDateToToday = () => {
+  const today = new Date();
+  let msOffsetFromUTC = today.getTimezoneOffset() * 6e4;
+  store.dispatch({
+    type: 'UPDATE_DATE_INPUT',
+    payload: {
+      date: new Date(today - msOffsetFromUTC).toISOString().slice(0, 10),
+    },
+  });
+}
+
 const addTransaction = () => {
   const captured = store.getState().capture;
   const newTransaction = {
@@ -87,6 +98,7 @@ const mapDispatchToProps = dispatch => ({
   addTransaction,
   adjustDate,
   getCapturedAmountFromStore,
+  setDateToToday,
   clearState() {
     dispatch({ type: 'CLEAR_ALL_TRANSACTIONS' });
   },
@@ -157,6 +169,7 @@ export class Capture extends React.Component {
             addTransaction={addTransaction}
             adjustDate={adjustDate}
             categories={categories}
+            setDateToToday={setDateToToday}
           />}
 
         <button onClick={clearState}>Clear state</button>
