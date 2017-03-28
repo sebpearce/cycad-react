@@ -1,12 +1,151 @@
 {
-  "foo": [
+  "transactions": [
     {
-      "name": "Seb",
-      "age": 29
+      "id": "9f2b21fe-3e2c-4e41-a1ae-f1e375df50b8",
+      "amt": "-14.00",
+      "date": "2017-03-27",
+      "note": "",
+      "cat_id": "4"
     },
     {
-      "name": "Mako",
-      "age": 30
+      "id": "ecda57a9-0365-4f2f-b43d-8a2e9a523d39",
+      "amt": "-14.00",
+      "date": "2017-03-28",
+      "note": "",
+      "cat_id": "4"
+    },
+    {
+      "id": "eaa7c4dc-c4a4-4cfa-bd3e-1881cf72e7e3",
+      "amt": "4003.00",
+      "date": "2017-03-28",
+      "note": "",
+      "cat_id": "27"
+    }
+  ],
+  "categories": [
+    {
+      "id": "0",
+      "name": "Rent"
+    },
+    {
+      "id": "1",
+      "name": "Gas"
+    },
+    {
+      "id": "2",
+      "name": "Water"
+    },
+    {
+      "id": "3",
+      "name": "Electricity"
+    },
+    {
+      "id": "4",
+      "name": "Internet"
+    },
+    {
+      "id": "5",
+      "name": "Phone"
+    },
+    {
+      "id": "6",
+      "name": "Public transport"
+    },
+    {
+      "id": "7",
+      "name": "Travel"
+    },
+    {
+      "id": "8",
+      "name": "Groceries"
+    },
+    {
+      "id": "9",
+      "name": "Eating out"
+    },
+    {
+      "id": "10",
+      "name": "Clothes"
+    },
+    {
+      "id": "11",
+      "name": "Haircuts"
+    },
+    {
+      "id": "12",
+      "name": "Leisure"
+    },
+    {
+      "id": "13",
+      "name": "Books"
+    },
+    {
+      "id": "14",
+      "name": "Games"
+    },
+    {
+      "id": "15",
+      "name": "Netflix"
+    },
+    {
+      "id": "16",
+      "name": "Gym"
+    },
+    {
+      "id": "17",
+      "name": "Jiu-jitsu"
+    },
+    {
+      "id": "18",
+      "name": "Petrol"
+    },
+    {
+      "id": "19",
+      "name": "Car"
+    },
+    {
+      "id": "20",
+      "name": "Equipment/Gadgets"
+    },
+    {
+      "id": "21",
+      "name": "Furniture"
+    },
+    {
+      "id": "22",
+      "name": "Gifts"
+    },
+    {
+      "id": "23",
+      "name": "Donations"
+    },
+    {
+      "id": "24",
+      "name": "One-offs"
+    },
+    {
+      "id": "25",
+      "name": "Medical"
+    },
+    {
+      "id": "26",
+      "name": "Other"
+    },
+    {
+      "id": "27",
+      "name": "Salary"
+    },
+    {
+      "id": "28",
+      "name": "Partner’s salary"
+    },
+    {
+      "id": "29",
+      "name": "Tax return"
+    },
+    {
+      "id": "30",
+      "name": "Windfall"
     }
   ]
 }
