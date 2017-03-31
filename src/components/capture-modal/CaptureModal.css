@@ -52,9 +52,8 @@
   background: #f7f7f7;
   border: 1px solid #bcbdbe;
   border-radius: 5px; }
-
-.datePickerCell:hover, .datePickerCellSelected:hover {
-  cursor: pointer; }
+  .datePickerCell:hover, .datePickerCellSelected:hover {
+    cursor: pointer; }
 
 .datePickerCellSelected {
   border: 3px solid #5299e0;
@@ -71,47 +70,40 @@
   flex: 1;
   display: flex;
   flex-direction: column; }
-
-.categoryPicker label, .amountPicker label {
-  font-size: 14px;
-  font-weight: 600;
-  margin-bottom: 5px; }
-
-.categoryPicker input, .amountPicker input {
-  box-sizing: border-box;
-  border-radius: 5px;
-  border: 3px solid #d0d1d1;
-  font-size: 28px;
-  width: 94%;
-  padding: 10px 12px;
-  font-family: "Open Sans";
-  font-weight: 600;
-  color: #3B3E41; }
-
-.categoryPicker input:focus, .amountPicker input:focus {
-  outline: none;
-  border-color: #5299e0;
-  box-shadow: inset 0 0 3px #ccc, 0 0 5px #ccc; }
+  .categoryPicker label, .amountPicker label {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 5px; }
+  .categoryPicker input, .amountPicker input {
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 3px solid #d0d1d1;
+    font-size: 28px;
+    width: 94%;
+    padding: 10px 12px;
+    font-family: "Open Sans";
+    font-weight: 600;
+    color: #3B3E41; }
+    .categoryPicker input:focus, .amountPicker input:focus {
+      outline: none;
+      border-color: #5299e0;
+      box-shadow: inset 0 0 3px #ccc, 0 0 5px #ccc; }
 
 .categoryPicker .categoryPickerInputWarning:focus {
   border-color: #EB6D6D; }
 
 .amountPicker {
   text-align: right; }
-
-.amountPicker input {
-  margin-left: auto;
-  text-align: right; }
-
-.amountPicker .amountPickerInputWarning:focus {
-  border-color: #EB6D6D; }
-
-.amountPicker .amountPickerInputPositive {
-  border-color: #49C06C;
-  color: #49C06C; }
-
-.amountPicker .amountPickerInputPositive:focus {
-  border-color: #49C06C; }
+  .amountPicker input {
+    margin-left: auto;
+    text-align: right; }
+  .amountPicker .amountPickerInputWarning:focus {
+    border-color: #EB6D6D; }
+  .amountPicker .amountPickerInputPositive {
+    border-color: #49C06C;
+    color: #49C06C; }
+    .amountPicker .amountPickerInputPositive:focus {
+      border-color: #49C06C; }
 
 .categorySelect {
   display: flex;
