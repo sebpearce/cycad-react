@@ -1,6 +1,7 @@
 .transactionListContainer {
   max-width: 400px;
-  padding: 30px; }
+  padding: 30px;
+  font-size: 1rem; }
 
 .transactionListDay {
   padding-bottom: 15px; }
@@ -8,11 +9,12 @@
 .transactionListDayDate {
   font-size: 17px;
   font-weight: 600;
-  padding-bottom: 3px; }
+  padding-bottom: 0.5em; }
 
 .transactionListRow {
-  font-size: 27px;
-  display: flex; }
+  font-size: 21px;
+  display: flex;
+  padding-bottom: 0.3em; }
 
 .transactionListRowCat {
   flex: 5;

@@ -16,7 +16,7 @@ const CategorySummaryRow = props => {
         {props.categoryName}
       </div>
       <div className={amtClass}>
-        { formatAsCurrency(props.amt, {plus: true, minus: true}) }
+        {formatAsCurrency(props.amt, { plus: true, minus: true })}
       </div>
     </div>
   );
@@ -37,7 +37,7 @@ class CategorySummary extends React.Component {
       thisMonthsTransactions,
       'cat_id'
     );
-    
+
     const totalsForEachCategory = Object.keys(
       thisMonthsTransactionsByCategory
     ).reduce(
@@ -59,6 +59,7 @@ class CategorySummary extends React.Component {
 
     return (
       <div className={styles.categorySummaryContainer}>
+        <div className={styles.categorySummaryHeading}>This month so far</div>
         {Object.keys(totalsForEachCategory).map(id => {
           return (
             <CategorySummaryRow

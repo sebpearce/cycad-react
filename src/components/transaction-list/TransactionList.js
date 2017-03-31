@@ -15,7 +15,7 @@ const TransactionListRow = props => {
         {getCategoryName(props.categories, props.row.cat_id)}
       </div>
       <div className={amtClass}>
-        { formatAsCurrency(props.row.amt, {plus: true, minus: true}) }
+        {formatAsCurrency(props.row.amt, { plus: true, minus: true })}
       </div>
     </div>
   );

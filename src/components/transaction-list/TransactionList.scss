@@ -5,6 +5,7 @@ $width: 400px;
 .transactionListContainer {
   max-width: $width;
   padding: 30px;
+  font-size: 1rem;
 }
 
 .transactionListDay {
@@ -14,12 +15,13 @@ $width: 400px;
 .transactionListDayDate {
   font-size: 17px;
   font-weight: $weight-bold;
-  padding-bottom: 3px;
+  padding-bottom: 0.5em;
 }
 
 .transactionListRow {
-  font-size: 27px;
+  font-size: 21px;
   display: flex;
+  padding-bottom: 0.3em;
 }
 
 .transactionListRowCat {

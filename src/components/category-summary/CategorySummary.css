@@ -2,17 +2,23 @@
   max-width: 400px;
   padding: 30px; }
 
+.categorySummaryHeading {
+  font-size: 27px;
+  font-weight: 600;
+  padding-bottom: 0.5em; }
+
 .categorySummaryDay {
   padding-bottom: 15px; }
 
 .categorySummaryDayDate {
   font-size: 17px;
   font-weight: 600;
-  padding-bottom: 3px; }
+  padding-bottom: 0.5em; }
 
 .categorySummaryRow {
-  font-size: 27px;
-  display: flex; }
+  font-size: 21px;
+  display: flex;
+  padding-bottom: 0.3em; }
 
 .categorySummaryRowCat {
   flex: 5;
