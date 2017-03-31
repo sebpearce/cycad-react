@@ -42,7 +42,9 @@ export const formatLongDate = isoDate => {
 
 export const getTodaysDate = () => {
   const today = new Date();
-  return new Date(today - timeZoneOffsetInMs());
+  return new Date(
+    Date.UTC(today.getFullYear(), today.getMonth(), today.getDate(), 0, 0, 0)
+  );
 };
 
 export const getTodaysDateISO = () => {
@@ -57,6 +59,17 @@ export const getNMonthsAgoISO = n => {
   const thatMonth = diff < 0 ? diff + 12 : diff;
   const thatYear = diff < 0 ? thisYear - 1 : thisYear;
   const thatDate = new Date(thatYear, thatMonth);
-  const out = toYYYYMMDDString(new Date(thatDate - timeZoneOffsetInMs()));
+  const out = toYYYYMMDDString(
+    new Date(
+      Date.UTC(
+        thatDate.getFullYear(),
+        thatDate.getMonth(),
+        thatDate.getDate(),
+        0,
+        0,
+        0
+      )
+    )
+  );
   return out;
 };
