@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styles from './App.css';
 import { Route } from 'react-router-dom';
+import IconDefs from './components/IconDefs';
 import {
   Sidebar,
   CaptureContainer,
@@ -13,6 +14,7 @@ export class App extends Component {
   render() {
     return (
       <div className={styles.app}>
+        <IconDefs />
         <div className={styles.mainContainer}>
           <Sidebar />
           <div className={styles.content}>

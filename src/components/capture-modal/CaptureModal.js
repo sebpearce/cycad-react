@@ -7,8 +7,8 @@ import CategorySelect from './CategorySelect';
 import { Motion, spring } from 'react-motion';
 import { determineNumericValue } from '../../helpers/currency-helpers';
 import { Howl } from 'howler';
-import plinksrc from '../../audio/plink-1.mp3';
-import incomeSoundSrc from '../../audio/income.mp3';
+import plinksrc from '../../assets/audio/plink-1.mp3';
+import incomeSoundSrc from '../../assets/audio/income.mp3';
 
 export class CaptureModal extends React.Component {
   constructor() {

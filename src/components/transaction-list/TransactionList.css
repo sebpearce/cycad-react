@@ -16,6 +16,34 @@
   display: flex;
   padding-bottom: 0.3em; }
 
+.transactionListRow:hover .transactionListRowDelete {
+  color: #EB6D6D; }
+
+.transactionListRow:hover .transactionListRowDeleteIcon {
+  opacity: 1; }
+
+.transactionListRowDelete {
+  flex-basis: 22px;
+  margin-left: 10px;
+  text-align: center; }
+
+.transactionListRowDeleteIcon {
+  opacity: 0;
+  transition: opacity 0.1s;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  height: 100%; }
+
+.transactionListRowDeleteIcon svg {
+  fill: #EB6D6D; }
+
+.transactionListRowDeleteIcon:hover {
+  cursor: pointer; }
+
+.transactionListRowDeleteIcon:hover svg {
+  fill: #be1a1a; }
+
 .transactionListRowCat {
   flex: 5;
   color: #c4c5c6; }

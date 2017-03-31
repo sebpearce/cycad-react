@@ -22,6 +22,39 @@ $width: 400px;
   font-size: 21px;
   display: flex;
   padding-bottom: 0.3em;
+  &:hover .transactionListRowDelete {
+    color: $palette-negative;
+  }
+  &:hover .transactionListRowDeleteIcon {
+    opacity: 1;
+  }
+}
+
+.transactionListRowDelete {
+  flex-basis: 22px;
+  margin-left: 10px;
+  text-align: center;
+}
+
+.transactionListRowDeleteIcon{
+  opacity: 0;
+  transition: opacity 0.1s;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  height: 100%;
+
+  svg {
+    fill: $palette-negative;
+  }
+
+  &:hover {
+    cursor: pointer;
+
+    svg {
+      fill: darken($palette-negative, 25%);
+    }
+  }
 }
 
 .transactionListRowCat {

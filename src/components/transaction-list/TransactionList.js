@@ -3,6 +3,7 @@ import styles from './TransactionList.css';
 import { formatLongDate } from '../../helpers/date-helpers';
 import { formatAsCurrency } from '../../helpers/currency-helpers';
 import { getCategoryName } from '../../helpers/misc-helpers';
+import Icon from '../Icon';
 
 const TransactionListRow = props => {
   const amtClass = props.row.amt > 0
@@ -16,6 +17,16 @@ const TransactionListRow = props => {
       </div>
       <div className={amtClass}>
         {formatAsCurrency(props.row.amt, { plus: true, minus: true })}
+      </div>
+      <div className={styles.transactionListRowDelete}>
+        <div
+          className={styles.transactionListRowDeleteIcon}
+          onClick={() => {
+            props.removeTransaction(props.row.id);
+          }}
+        >
+          <Icon id="trash" />
+        </div>
       </div>
     </div>
   );
@@ -32,6 +43,7 @@ const DayOfTransactions = props => {
           row={row}
           key={row.id}
           categories={props.categories}
+          removeTransaction={props.removeTransaction}
         />
       ))}
     </div>
@@ -53,6 +65,7 @@ class TransactionList extends React.Component {
               rows={transactions[day]}
               key={day}
               categories={props.categories}
+              removeTransaction={props.removeTransaction}
             />
           );
         })}

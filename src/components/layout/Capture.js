@@ -28,6 +28,15 @@ const updateCategoryInput = (id, evt) => {
   });
 };
 
+const removeTransaction = id => {
+  store.dispatch({
+    type: 'REMOVE_TRANSACTION',
+    payload: {
+      id: id,
+    },
+  });
+};
+
 const getISODate = dateObj => {
   return dateObj.toISOString().slice(0, 10);
 };
@@ -163,6 +172,7 @@ export class Capture extends React.Component {
             <TransactionList
               transactionsByDate={transactionsByDate}
               categories={categories}
+              removeTransaction={removeTransaction}
             />
           </div>
           <div className={styles.categorySummaryContainer}>
