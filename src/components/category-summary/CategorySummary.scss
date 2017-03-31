@@ -1,0 +1,39 @@
+@import '../../global.scss';
+
+$width: 400px;
+
+.categorySummaryContainer {
+  max-width: $width;
+  padding: 30px;
+}
+
+.categorySummaryDay {
+  padding-bottom: 15px;
+}
+
+.categorySummaryDayDate {
+  font-size: 17px;
+  font-weight: $weight-bold;
+  padding-bottom: 3px;
+}
+
+.categorySummaryRow {
+  font-size: 27px;
+  display: flex;
+}
+
+.categorySummaryRowCat {
+  flex: 5;
+  color: mix(#fff, $palette-text, 70%);
+}
+
+.categorySummaryRowAmt {
+  flex: 3;
+  font-weight: $weight-bold;
+  text-align: right;
+}
+
+.categorySummaryRowAmtPositive {
+  @extend .categorySummaryRowAmt;
+  color: $palette-cash;
+}

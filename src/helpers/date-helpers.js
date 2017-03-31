@@ -23,10 +23,6 @@ const daysOfWeek = [
   'Saturday',
 ];
 
-const timeZoneOffsetInMs = () => {
-  return new Date().getTimezoneOffset() * 6e4;
-};
-
 const toYYYYMMDDString = date => {
   return date.toISOString().slice(0, 10);
 };

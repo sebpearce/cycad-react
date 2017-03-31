@@ -5,8 +5,7 @@ import AmountInput from './AmountInput';
 import CategoryInput from './CategoryInput';
 import CategorySelect from './CategorySelect';
 import { Motion, spring } from 'react-motion';
-import { formatWithCommas } from '../../helpers/currency-helpers';
-import { pipe } from '../../helpers/misc-helpers';
+import { determineNumericValue } from '../../helpers/currency-helpers';
 import { Howl } from 'howler';
 import plinksrc from '../../audio/plink-1.mp3';
 import incomeSoundSrc from '../../audio/income.mp3';
@@ -20,7 +19,7 @@ export class CaptureModal extends React.Component {
       visibleItems: [],
       selectedItem: 0,
       categoryInput: '',
-      amountInput: '0.00',
+      amountInput: 0,
       categoryWarning: false,
       amountWarning: false,
     };
@@ -37,44 +36,24 @@ export class CaptureModal extends React.Component {
     document.removeEventListener('keydown', this.handleKeyDown, false);
   }
 
-  makePositive = x =>
-    pipe(
-      x,
-      this.stripNonNumericCharacters,
-      this.insertDecimal,
-      formatWithCommas,
-    );
-
-  processRawInput = x =>
-    pipe(
-      x,
-      this.stripNonNumericCharacters,
-      this.insertDecimal,
-      formatWithCommas,
-      this.prependNegativeSign,
-    );
-
-  stripNonNumericCharacters = x => {
-    return x.replace(/[^0-9]/g, '');
+  validateAmount = x => {
+    return Number(x) !== 0;
   };
 
-  insertDecimal = x => {
-    return x ? (parseInt(x, 10) / 100).toFixed(2) : '0.00';
+  stripDecimalAndCommas = s => {
+    return String(s).replace(/[.,]/g, '');
   };
-
-  prependNegativeSign = x => {
-    return '-'.concat(x);
-  }
-
-  validateAmount = x => x !== '0.00' && /^-?[0-9]+.[0-9]{2}$/.test(x);
 
   handleAmountStringChange = e => {
-    const visibleInput = e.target.value;
-    const strippedInput = this.processRawInput(visibleInput);
+    const rawInput = e.target.value;
+    const visibleInput = String(
+      Number(this.stripDecimalAndCommas(rawInput)) / 100
+    );
+    const val = determineNumericValue(visibleInput) * -1;
     this.setState({
-      amountInput: strippedInput,
+      amountInput: val,
     });
-    this.props.updateAmountInput(strippedInput);
+    this.props.updateAmountInput(val);
   };
 
   handleSearchStringChange = e => {
@@ -112,13 +91,13 @@ export class CaptureModal extends React.Component {
     }
     this.props.addTransaction();
     this.setState({
-      amountInput: '',
+      amountInput: 0,
       categoryInput: '',
       visibleItems: [],
       categoryWarning: false,
       amountWarning: false,
     });
-    this.props.updateAmountInput('');
+    this.props.updateAmountInput(0);
     this.props.updateCategoryInput('');
     this.focusCategoryInput();
     this.plink.play();
@@ -198,16 +177,24 @@ export class CaptureModal extends React.Component {
         break;
       case 187: // +
         if (evt.shiftKey) {
-          const positiveAmt = this.makePositive(this.state.amountInput);
+          const positiveAmt = Math.abs(this.state.amountInput);
           this.setState({
             amountInput: positiveAmt,
             amountWarning: false,
-          })
+          });
           this.props.updateAmountInput(positiveAmt);
           this.incomeSound.play();
           evt.preventDefault();
-          // turn green
         }
+        break;
+      case 189: // -
+          const negativeAmt = Math.abs(this.state.amountInput) * -1;
+          this.setState({
+            amountInput: negativeAmt,
+            amountWarning: false,
+          });
+          this.props.updateAmountInput(negativeAmt);
+          evt.preventDefault();
         break;
       case 219: // [
         evt.preventDefault();
@@ -269,7 +256,7 @@ export class CaptureModal extends React.Component {
                       }}
                     />
                     <AmountInput
-                      amountAsString={this.state.amountInput}
+                      amount={this.state.amountInput}
                       handleAmountStringChange={this.handleAmountStringChange}
                       handleFocus={this.handleFocus}
                       amountWarning={this.state.amountWarning}
@@ -295,7 +282,7 @@ export class CaptureModal extends React.Component {
 
 CaptureModal.propTypes = {
   date: React.PropTypes.string.isRequired,
-  amt: React.PropTypes.string.isRequired,
+  amt: React.PropTypes.number.isRequired,
   note: React.PropTypes.string.isRequired,
   cat_id: React.PropTypes.string.isRequired,
   updateAmountInput: React.PropTypes.func.isRequired,
@@ -304,6 +291,6 @@ CaptureModal.propTypes = {
   addTransaction: React.PropTypes.func.isRequired,
   adjustDate: React.PropTypes.func.isRequired,
   categories: React.PropTypes.array.isRequired,
-  getCapturedAmountFromStore:React.PropTypes.func.isRequired,
+  getCapturedAmountFromStore: React.PropTypes.func.isRequired,
   setDateToToday: React.PropTypes.func.isRequired,
-}
+};

@@ -1,0 +1,27 @@
+.categorySummaryContainer {
+  max-width: 400px;
+  padding: 30px; }
+
+.categorySummaryDay {
+  padding-bottom: 15px; }
+
+.categorySummaryDayDate {
+  font-size: 17px;
+  font-weight: 600;
+  padding-bottom: 3px; }
+
+.categorySummaryRow {
+  font-size: 27px;
+  display: flex; }
+
+.categorySummaryRowCat {
+  flex: 5;
+  color: #c4c5c6; }
+
+.categorySummaryRowAmt, .categorySummaryRowAmtPositive {
+  flex: 3;
+  font-weight: 600;
+  text-align: right; }
+
+.categorySummaryRowAmtPositive {
+  color: #49C06C; }

@@ -3,6 +3,9 @@ import { connect } from 'react-redux';
 import { CaptureModal } from '../capture-modal/CaptureModal';
 import { store } from '../../store';
 import TransactionList from '../transaction-list/TransactionList';
+import CategorySummary from '../category-summary/CategorySummary';
+import styles from './Capture.css';
+import { groupByProperty } from '../../helpers/misc-helpers';
 
 const updateAmountInput = amt => {
   store.dispatch({
@@ -49,7 +52,7 @@ const setDateToToday = () => {
       date: new Date(today - msOffsetFromUTC).toISOString().slice(0, 10),
     },
   });
-}
+};
 
 const addTransaction = () => {
   const captured = store.getState().capture;
@@ -62,28 +65,9 @@ const addTransaction = () => {
   store.dispatch({ type: 'ADD_TRANSACTION', payload: newTransaction });
 };
 
-const getTransactionsByDate = () => {
-  const transactions = store.getState().transactions;
-  const transactionsByDate = transactions.reduce(
-    (total, item) => {
-      const date = item['date'];
-      const keys = Object.keys(item);
-      const itemWithoutDate = keys.filter(key => key !== 'date').reduce((acc, key) => {
-        acc[key] = item[key];
-        return acc;
-      }, {});
-      total[date] = total[date] || [];
-      total[date].push(itemWithoutDate);
-      return total;
-    },
-    {}
-  );
-  return transactionsByDate;
-};
-
 const getCapturedAmountFromStore = () => {
   return store.getState().capture.amountInput;
-}
+};
 
 const mapStateToProps = state => ({
   transactions: state.transactions,
@@ -153,27 +137,42 @@ export class Capture extends React.Component {
       updateNoteInput,
       updateCategoryInput,
       clearState,
+      transactions,
     } = this.props;
+    const transactionsByDate = groupByProperty(transactions, 'date');
     return (
       <div>
-        {this.state.isCaptureVisible &&
-          <CaptureModal
-            date={capture.dateInput}
-            amt={capture.amountInput}
-            note={capture.noteInput}
-            cat_id={capture.categoryInput}
-            updateAmountInput={updateAmountInput}
-            handleNoteChange={updateNoteInput}
-            updateCategoryInput={updateCategoryInput}
-            getCapturedAmountFromStore={getCapturedAmountFromStore}
-            addTransaction={addTransaction}
-            adjustDate={adjustDate}
-            categories={categories}
-            setDateToToday={setDateToToday}
-          />}
+        <div className={styles.captureContainer}>
+          {this.state.isCaptureVisible &&
+            <CaptureModal
+              date={capture.dateInput}
+              amt={capture.amountInput}
+              note={capture.noteInput}
+              cat_id={capture.categoryInput}
+              updateAmountInput={updateAmountInput}
+              handleNoteChange={updateNoteInput}
+              updateCategoryInput={updateCategoryInput}
+              getCapturedAmountFromStore={getCapturedAmountFromStore}
+              addTransaction={addTransaction}
+              adjustDate={adjustDate}
+              categories={categories}
+              setDateToToday={setDateToToday}
+            />}
 
+          <div className={styles.transactionListContainer}>
+            <TransactionList
+              transactionsByDate={transactionsByDate}
+              categories={categories}
+            />
+          </div>
+          <div className={styles.categorySummaryContainer}>
+            <CategorySummary
+              transactions={this.props.transactions}
+              categories={categories}
+            />
+          </div>
+        </div>
         <button onClick={clearState}>Clear state</button>
-        <TransactionList transactionsByDate={getTransactionsByDate()} categories={categories} />
         <pre>
           {JSON.stringify(store.getState(), null, '  ')}
         </pre>

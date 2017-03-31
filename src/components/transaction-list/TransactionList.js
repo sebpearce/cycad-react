@@ -1,16 +1,8 @@
 import React from 'react';
 import styles from './TransactionList.css';
 import { formatLongDate } from '../../helpers/date-helpers';
-import { formatWithCommas, addPlusSignIfPositive } from '../../helpers/currency-helpers';
-import { pipe } from '../../helpers/misc-helpers';
-
-const getCategoryName = (categories, id) => {
-  return categories.find(cat => cat.id === id).name;
-};
-
-const replaceHyphenWithMinusSign = x => {
-  return x.replace(/-/, '–');
-};
+import { formatAsCurrency } from '../../helpers/currency-helpers';
+import { getCategoryName } from '../../helpers/misc-helpers';
 
 const TransactionListRow = props => {
   const amtClass = props.row.amt > 0
@@ -23,14 +15,7 @@ const TransactionListRow = props => {
         {getCategoryName(props.categories, props.row.cat_id)}
       </div>
       <div className={amtClass}>
-        {
-          pipe(
-            props.row.amt,
-            formatWithCommas,
-            replaceHyphenWithMinusSign,
-            addPlusSignIfPositive,
-          )
-        }
+        { formatAsCurrency(props.row.amt, {plus: true, minus: true}) }
       </div>
     </div>
   );

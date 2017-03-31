@@ -1,0 +1,8 @@
+.captureContainer {
+  display: flex; }
+
+.transactionListContainer {
+  flex: 1; }
+
+.categorySummaryContainer {
+  flex: 1; }

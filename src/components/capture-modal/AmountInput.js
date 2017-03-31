@@ -1,22 +1,16 @@
 import React from 'react';
 import styles from './CaptureModal.css';
-import { addPlusSignIfPositive } from '../../helpers/currency-helpers';
-import { pipe } from '../../helpers/misc-helpers';
+import {
+  formatAsCurrency,
+  determineNumericValue,
+} from '../../helpers/currency-helpers';
 
 class AmountInput extends React.Component {
-  stripNegativeSign(x) {
-    return x.replace(/-/, '');
-  }
-
-  stripCommas(x) {
-    return x.replace(/,/, '');
-  }
-
   render() {
     let suffix = '';
     if (this.props.amountWarning) {
       suffix = 'Warning';
-    } else if (Number(this.stripCommas(this.props.amountAsString)) > 0) {
+    } else if (determineNumericValue(this.props.amount) > 0) {
       suffix = 'Positive';
     }
     const className = styles['amountPickerInput' + suffix];
@@ -28,14 +22,13 @@ class AmountInput extends React.Component {
           type="text"
           className={className}
           onChange={this.props.handleAmountStringChange}
-          value={
-            pipe(
-              this.props.amountAsString,
-              addPlusSignIfPositive,
-              this.stripNegativeSign,
-            )
-          }
-          ref={(input) => { this.amountInput = input; }}
+          value={formatAsCurrency(this.props.amount, {
+            plus: true,
+            minus: false,
+          })}
+          ref={input => {
+            this.amountInput = input;
+          }}
           onFocus={this.props.handleFocus}
         />
       </div>
@@ -44,10 +37,10 @@ class AmountInput extends React.Component {
 }
 
 AmountInput.propTypes = {
-  amountAsString: React.PropTypes.string.isRequired,
+  amount: React.PropTypes.number.isRequired,
   handleAmountStringChange: React.PropTypes.func.isRequired,
   handleFocus: React.PropTypes.func.isRequired,
   amountWarning: React.PropTypes.bool.isRequired,
-}
+};
 
 export default AmountInput;

@@ -1,7 +1,9 @@
+import { determineNumericValue } from '../helpers/currency-helpers';
+
 const today = new Date();
 let msOffsetFromUTC = today.getTimezoneOffset() * 6e4;
 const initialState = {
-  amountInput: '0.00',
+  amountInput: 0,
   dateInput: new Date(today - msOffsetFromUTC).toISOString().slice(0, 10),
   noteInput: '',
   categoryInput: '',
@@ -12,11 +14,11 @@ export const capture = (state = initialState, action) => {
 
   switch (action.type) {
     case 'UPDATE_AMOUNT_INPUT':
-      const stringWithoutCommas = payload.amt.replace(/,/g, '');
+      const stringified = String(payload.amt);
       const format = /^-?(\d+)?(\.(\d+)?)?$/;
-      if (!format.test(stringWithoutCommas))
-        return { ...state, amountInput: '' };
-      return { ...state, amountInput: Number(stringWithoutCommas).toFixed(2) };
+      if (!format.test(stringified))
+        return { ...state, amountInput: 0 };
+      return { ...state, amountInput: determineNumericValue(payload.amt) };
 
     case 'UPDATE_DATE_INPUT':
       // TODO: Handle February 30-31, April 31 etc.

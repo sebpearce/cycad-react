@@ -2,96 +2,24 @@ import { capture } from './capture';
 
 test('accepts demical without zero prefix', () => {
   const stateBefore = {
-    amountInput: '42.00',
+    amountInput: 42,
   };
   const action = {
     type: 'UPDATE_AMOUNT_INPUT',
     payload: {
-      amt: '.98',
+      amt: 0.98,
     },
   };
   const stateAfter = {
-    amountInput: '0.98',
+    amountInput: 0.98,
   };
-
-  expect(capture(stateBefore, action)).toEqual(stateAfter);
-});
-
-test('ignores decimal on the end', () => {
-  const stateBefore = {
-    amountInput: '42.00',
-  };
-  const action = {
-    type: 'UPDATE_AMOUNT_INPUT',
-    payload: {
-      amt: '42.',
-    },
-  };
-  const stateAfter = {
-    amountInput: '42.00',
-  };
-
-  expect(capture(stateBefore, action)).toEqual(stateAfter);
-});
-
-test('can handle commas', () => {
-  const stateBefore = {
-    amountInput: '123.00',
-  };
-  const action = {
-    type: 'UPDATE_AMOUNT_INPUT',
-    payload: {
-      amt: '1,245,924.90',
-    },
-  };
-  const stateAfter = {
-    amountInput: '1245924.90',
-  };
-
-  expect(capture(stateBefore, action)).toEqual(stateAfter);
-});
-
-test('converts integers to money format', () => {
-  const stateBefore = {
-    amountInput: '123.00',
-    dateInput: '2017-03-19',
-  };
-  const action = {
-    type: 'UPDATE_AMOUNT_INPUT',
-    payload: {
-      amt: '666',
-    },
-  };
-  const stateAfter = {
-    amountInput: '666.00',
-    dateInput: '2017-03-19',
-  };
-
-  expect(capture(stateBefore, action)).toEqual(stateAfter);
-});
-
-test('accepts values with a decimal already', () => {
-  const stateBefore = {
-    amountInput: '123.00',
-    dateInput: '2017-03-19',
-  };
-  const action = {
-    type: 'UPDATE_AMOUNT_INPUT',
-    payload: {
-      amt: '666.55',
-    },
-  };
-  const stateAfter = {
-    amountInput: '666.55',
-    dateInput: '2017-03-19',
-  };
-
+  
   expect(capture(stateBefore, action)).toEqual(stateAfter);
 });
 
 test('interpets non-numerical input as nothing', () => {
   const stateBefore = {
-    amountInput: '123.00',
+    amountInput: 123.00,
   };
   const action = {
     type: 'UPDATE_AMOUNT_INPUT',
@@ -100,7 +28,7 @@ test('interpets non-numerical input as nothing', () => {
     },
   };
   const stateAfter = {
-    amountInput: '',
+    amountInput: 0,
   };
 
   expect(capture(stateBefore, action)).toEqual(stateAfter);
@@ -108,16 +36,16 @@ test('interpets non-numerical input as nothing', () => {
 
 test('accepts negative numbers', () => {
   const stateBefore = {
-    amountInput: '123.00',
+    amountInput: 123,
   };
   const action = {
     type: 'UPDATE_AMOUNT_INPUT',
     payload: {
-      amt: '-72.00',
+      amt: -720,
     },
   };
   const stateAfter = {
-    amountInput: '-72.00',
+    amountInput: -720,
   };
 
   expect(capture(stateBefore, action)).toEqual(stateAfter);
