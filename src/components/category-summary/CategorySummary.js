@@ -3,7 +3,10 @@ import styles from './CategorySummary.css';
 import { formatAsCurrency } from '../../helpers/currency-helpers';
 import { getCategoryName } from '../../helpers/misc-helpers';
 import { groupByProperty } from '../../helpers/misc-helpers';
-import { getTodaysDateISO, getNMonthsAgoISO } from '../../helpers/date-helpers';
+import {
+  getFirstOfThisMonthISO,
+  getLastOfThisMonthISO,
+} from '../../helpers/date-helpers';
 
 const CategorySummaryRow = props => {
   const amtClass = props.amt > 0
@@ -27,10 +30,10 @@ class CategorySummary extends React.Component {
     const props = this.props;
     const transactions = props.transactions;
     const categories = props.categories;
-    const today = getTodaysDateISO();
-    const firstOfThisMonth = getNMonthsAgoISO(1);
+    const lastOfThisMonth = getLastOfThisMonthISO();
+    const firstOfThisMonth = getFirstOfThisMonthISO();
     const thisMonthsTransactions = transactions.filter(
-      d => d.date <= today && d.date >= firstOfThisMonth
+      d => d.date <= lastOfThisMonth && d.date >= firstOfThisMonth
     );
 
     const thisMonthsTransactionsByCategory = groupByProperty(
@@ -56,7 +59,7 @@ class CategorySummary extends React.Component {
       },
       {}
     );
-
+    
     return (
       <div className={styles.categorySummaryContainer}>
         <div className={styles.categorySummaryHeading}>This month so far</div>

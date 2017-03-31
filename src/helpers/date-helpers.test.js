@@ -59,3 +59,15 @@ describe('getNMonthsAgoISO', () => {
     });
   });
 });
+
+describe('getFirstOfThisMonthISO', () => {
+  it('returns the first day of the current month', () => {
+    expect(subject.getFirstOfThisMonthISO()).toEqual('2017-03-01');
+  });
+});
+
+describe('getLastOfThisMonthISO', () => {
+  it('returns the last day of the current month', () => {
+    expect(subject.getLastOfThisMonthISO()).toEqual('2017-03-31');
+  });
+});

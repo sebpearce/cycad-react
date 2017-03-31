@@ -84,3 +84,18 @@ export const getNMonthsAgoISO = n => {
   );
   return out;
 };
+
+export const getLastOfThisMonthISO = () => {
+  const today = getTodaysDate();
+  const firstOfNextMonth = new Date(
+    Date.UTC(today.getFullYear(), today.getMonth() + 1, 1, 0, 0, 0)
+  );
+  const lastOfThisMonth = new Date(
+    firstOfNextMonth.getTime() - 8.64e7
+  );
+  return toYYYYMMDDString(lastOfThisMonth);
+};
+
+export const getFirstOfThisMonthISO = () => {
+  return getNMonthsAgoISO(1);
+};
