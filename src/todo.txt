@@ -3,3 +3,4 @@
 - smaller font size, increased padding-bottom on rows
 - change January to Jan
 - add delete functionality for row
+- add undo functionality

@@ -13,6 +13,21 @@ const months = [
   'December',
 ];
 
+const monthsAbbr = [
+  'Jan',
+  'Feb',
+  'Mar',
+  'Apr',
+  'May',
+  'Jun',
+  'Jul',
+  'Aug',
+  'Sep',
+  'Oct',
+  'Nov',
+  'Dec',
+];
+
 const daysOfWeek = [
   'Sunday',
   'Monday',
@@ -30,7 +45,7 @@ const toYYYYMMDDString = date => {
 export const formatLongDate = isoDate => {
   const dateObj = new Date(isoDate);
   const dayOfWeek = daysOfWeek[dateObj.getDay()];
-  const month = months[dateObj.getMonth()];
+  const month = monthsAbbr[dateObj.getMonth()];
   const year = dateObj.getFullYear();
   const day = dateObj.getDate();
   return `${dayOfWeek}, ${day} ${month} ${year}`;
