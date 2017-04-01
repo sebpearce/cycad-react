@@ -33,12 +33,10 @@
   font-size: 21px;
   display: flex;
   padding-bottom: 0.3em; }
-
-.transactionListRow:hover .transactionListRowDelete {
-  color: #EB6D6D; }
-
-.transactionListRow:hover .transactionListRowDeleteIcon {
-  opacity: 1; }
+  .transactionListRow:hover .transactionListRowDelete {
+    color: #EB6D6D; }
+  .transactionListRow:hover .transactionListRowDeleteIcon {
+    opacity: 1; }
 
 .transactionListRowDelete {
   flex-basis: 22px;
@@ -52,15 +50,12 @@
   align-items: center;
   display: flex;
   height: 100%; }
-
-.transactionListRowDeleteIcon svg {
-  fill: #d8d8d9; }
-
-.transactionListRowDeleteIcon:hover {
-  cursor: pointer; }
-
-.transactionListRowDeleteIcon:hover svg {
-  fill: #EB6D6D; }
+  .transactionListRowDeleteIcon svg {
+    fill: #d8d8d9; }
+  .transactionListRowDeleteIcon:hover {
+    cursor: pointer; }
+    .transactionListRowDeleteIcon:hover svg {
+      fill: #EB6D6D; }
 
 .transactionListRowCat {
   flex: 5;
