@@ -1,17 +1,23 @@
-.thinScrollbar::-webkit-scrollbar, .transactionListContainer::-webkit-scrollbar {
+.transactionListContainer::-webkit-scrollbar {
   background: transparent;
   width: 5px; }
 
-.thinScrollbar::-webkit-scrollbar-track, .transactionListContainer::-webkit-scrollbar-track {
+.transactionListContainer::-webkit-scrollbar-track {
   background: #f5f6f6; }
 
-.thinScrollbar::-webkit-scrollbar-thumb, .transactionListContainer::-webkit-scrollbar-thumb {
+.transactionListContainer::-webkit-scrollbar-thumb {
   background-color: #d9dbdd; }
+
+.transactionListRowCat {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; }
 
 .transactionListContainer {
   padding: 40px 50px;
   font-size: 1rem;
-  flex: 1;
+  flex: 1 0 auto;
+  min-width: 400px;
   overflow-y: auto;
   height: 100vh;
   box-sizing: border-box; }

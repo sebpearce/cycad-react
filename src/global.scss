@@ -32,7 +32,7 @@ $base-font-family: 'Open Sans';
   @return transparentize($color, $inverse);
 }
 
-.thinScrollbar {
+%thinScrollbar {
   &::-webkit-scrollbar {
     background: transparent;
     width: 5px;
@@ -45,4 +45,10 @@ $base-font-family: 'Open Sans';
   &::-webkit-scrollbar-thumb {
     background-color: add-tint($palette-darkgray, 80%);
   }
+}
+
+%truncateMe {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

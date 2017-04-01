@@ -1,12 +1,13 @@
 @import '../../global.scss';
 
-$width: 400px;
+$min-width: 400px;
 $font-size: 21px;
 
 .categorySummaryContainer {
-  @extend .thinScrollbar;
+  @extend %thinScrollbar;
 
-  flex: 1;
+  flex: 1 0 auto;
+  min-width: $min-width;
   overflow-y: auto;
   padding: 40px 50px;
   height: 100vh;
@@ -41,6 +42,8 @@ $font-size: 21px;
 }
 
 .categorySummaryRowCat {
+  @extend %truncateMe;
+
   flex: 5;
   color: add-tint($palette-text, 50%);
   font-weight: $weight-light;

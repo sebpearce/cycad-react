@@ -1,9 +1,0 @@
-.thinScrollbar::-webkit-scrollbar {
-  background: transparent;
-  width: 5px; }
-
-.thinScrollbar::-webkit-scrollbar-track {
-  background: #f5f6f6; }
-
-.thinScrollbar::-webkit-scrollbar-thumb {
-  background-color: #d9dbdd; }
