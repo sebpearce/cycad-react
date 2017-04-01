@@ -32,6 +32,10 @@ $width: 400px;
   font-size: 21px;
   display: flex;
   padding-bottom: 0.3em;
+  
+  // &:nth-of-type(even) {
+  //   background: hsl(0,0%,98%);
+  // }
 }
 
 .categorySummaryRowCat {

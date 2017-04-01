@@ -52,13 +52,10 @@ const DayOfTransactions = props => {
 
 class TransactionList extends React.Component {
   scrollToBottom() {
-    const scrollHeight = this.transactionList.scrollHeight;
-    const height = this.transactionList.clientHeight;
-    const maxScrollTop = scrollHeight - height;
-    this.transactionList.scrollTop = maxScrollTop > 0 ? maxScrollTop : 0;
+    this.transactionList.scrollTop = this.transactionList.scrollHeight;
   }
-  
-  componentDidMount() {
+
+  componentDidUpdate() {
     this.scrollToBottom();
   }
 
