@@ -18,6 +18,7 @@ ul {
 
 li {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 25vh;
@@ -25,9 +26,26 @@ li {
 
 }
 
+.labelAndIcon {
+  text-align: center;
+}
+
+.iconContainer {
+  svg {
+    fill: add-tint($section-bg, 20%);
+    width: 70px;
+    height: 70px;
+    transition: fill 0.1s;
+  }
+  margin-bottom: 0.5em;
+}
+
+.labelContainer {
+}
+
 a {
   text-decoration: none;
-  color: mix(#fff, $section-bg, 20%);
+  color: add-tint($section-bg, 20%);
   font-size: 16px;
   font-weight: bold;
   transition: background 0.1s, color 0.1s;
@@ -36,9 +54,14 @@ a {
   letter-spacing: 0.1em;
 
   &:hover {
-    background: mix(#fff, $section-bg, 5%);
-    color: mix(#fff, $section-bg, 50%);
+    background: add-tint($section-bg, 5%);
+    color: add-tint($section-bg, 50%);
+
+    .iconContainer svg {
+      fill: add-tint($section-bg, 50%);
+    }
   }
+  
   // &:not(:last-child) {
   //   border-bottom: 2px solid mix(#000, $section-bg, 40%);
   // }
@@ -47,4 +70,8 @@ a {
 a.selected {
   background: $palette-coolblue;
   color: white;
+
+  .iconContainer svg {
+    fill: white;
+  }
 }
