@@ -9,7 +9,7 @@
   background-color: #d8d8d9; }
 
 .transactionListContainer {
-  padding: 40px 20px 40px 50px;
+  padding: 40px 50px;
   font-size: 1rem;
   flex: 1;
   overflow-y: auto;
@@ -22,7 +22,9 @@
   padding-bottom: 0.5em; }
 
 .transactionListDay {
-  padding-bottom: 15px; }
+  padding-bottom: 15px;
+  border-top: 3px solid #ebecec;
+  padding-top: 1em; }
 
 .transactionListDayDate {
   font-size: 17px;
@@ -33,29 +35,36 @@
   font-size: 21px;
   display: flex;
   padding-bottom: 0.3em; }
-  .transactionListRow:hover .transactionListRowDelete {
-    color: #EB6D6D; }
-  .transactionListRow:hover .transactionListRowDeleteIcon {
-    opacity: 1; }
+
+.transactionListRow:hover .transactionListRowDelete {
+  color: #EB6D6D; }
+
+.transactionListRow:hover .transactionListRowDeleteIcon {
+  opacity: 1; }
 
 .transactionListRowDelete {
-  flex-basis: 22px;
+  flex-basis: 0;
   margin-left: 10px;
-  text-align: center; }
+  text-align: center;
+  position: relative; }
 
 .transactionListRowDeleteIcon {
+  position: absolute;
   opacity: 0;
   transition: opacity 0.1s;
   justify-content: center;
   align-items: center;
   display: flex;
   height: 100%; }
-  .transactionListRowDeleteIcon svg {
-    fill: #d8d8d9; }
-  .transactionListRowDeleteIcon:hover {
-    cursor: pointer; }
-    .transactionListRowDeleteIcon:hover svg {
-      fill: #EB6D6D; }
+
+.transactionListRowDeleteIcon svg {
+  fill: #d8d8d9; }
+
+.transactionListRowDeleteIcon:hover {
+  cursor: pointer; }
+
+.transactionListRowDeleteIcon:hover svg {
+  fill: #EB6D6D; }
 
 .transactionListRowCat {
   flex: 5;

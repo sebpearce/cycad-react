@@ -5,7 +5,7 @@ $width: 500px;
 .transactionListContainer {
   @extend .thinScrollbar;
 
-  padding: 40px 20px 40px 50px;
+  padding: 40px 50px;
   font-size: 1rem;
   flex: 1;
   overflow-y: auto;
@@ -21,6 +21,8 @@ $width: 500px;
 
 .transactionListDay {
   padding-bottom: 15px;
+  border-top: 3px solid add-tint($palette-text, 90%);
+  padding-top: 1em;
 }
 
 .transactionListDayDate {
@@ -42,12 +44,14 @@ $width: 500px;
 }
 
 .transactionListRowDelete {
-  flex-basis: 22px;
+  flex-basis: 0;
   margin-left: 10px;
   text-align: center;
+  position: relative;
 }
 
 .transactionListRowDeleteIcon{
+  position: absolute;
   opacity: 0;
   transition: opacity 0.1s;
   justify-content: center;
