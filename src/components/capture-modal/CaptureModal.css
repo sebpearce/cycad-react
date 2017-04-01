@@ -3,10 +3,10 @@
   width: 5px; }
 
 .thinScrollbar::-webkit-scrollbar-track {
-  background: #eee; }
+  background: #f5f6f6; }
 
 .thinScrollbar::-webkit-scrollbar-thumb {
-  background-color: #d8d8d9; }
+  background-color: #d9dbdd; }
 
 .captureOverlay {
   position: fixed;
@@ -28,10 +28,10 @@
   padding: 20px 28px;
   background: #fff;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
-  border: 1px solid #898b8d;
+  border: 1px solid #8c9298;
   border-radius: 10px;
   width: 500px;
-  color: #3B3E41; }
+  color: #3f4a53; }
 
 .tips {
   text-align: right;
@@ -58,9 +58,9 @@
   height: 40px;
   font-size: 14px;
   font-weight: 600;
-  color: #9d9fa0;
-  background: #f7f7f7;
-  border: 1px solid #bcbdbe;
+  color: #9fa5a9;
+  background: #f7f8f8;
+  border: 1px solid #bec1c5;
   border-radius: 5px; }
 
 .datePickerCell:hover, .datePickerCellSelected:hover {
@@ -69,7 +69,7 @@
 .datePickerCellSelected {
   border: 3px solid #5299e0;
   background: #fff;
-  color: #3B3E41;
+  color: #3f4a53;
   box-shadow: 0 0 5px #bbb; }
 
 .pickersContainer {
@@ -90,13 +90,13 @@
 .categoryPicker input, .amountPicker input {
   box-sizing: border-box;
   border-radius: 5px;
-  border: 3px solid #d0d1d1;
+  border: 3px solid #d1d4d6;
   font-size: 28px;
   width: 94%;
   padding: 10px 12px;
   font-family: "Open Sans";
   font-weight: 600;
-  color: #3B3E41; }
+  color: #3f4a53; }
 
 .categoryPicker input:focus, .amountPicker input:focus {
   outline: none;

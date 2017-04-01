@@ -6,6 +6,7 @@ $active-section-bg: $palette-coolblue;
 .sidebar {
   flex: 0 0 250px;
   background: $section-bg;
+  font-size: 1rem;
 }
 
 ul {
@@ -27,10 +28,12 @@ li {
 a {
   text-decoration: none;
   color: mix(#fff, $section-bg, 20%);
-  font-size: 21px;
+  font-size: 16px;
   font-weight: bold;
   transition: background 0.1s, color 0.1s;
   background: transparent;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
 
   &:hover {
     background: mix(#fff, $section-bg, 5%);

@@ -2,7 +2,7 @@ $palette-brand: hsl(0,100%,50%);
 $palette-positive: hsl(0,50%,50%);
 $palette-warning: hsl(50,50%,50%);
 $palette-negative: #EB6D6D;
-$palette-darkgray: #3B3E41;
+$palette-darkgray: #3f4a53;
 $palette-coolblue: #5D758E;
 $palette-brightblue: hsl(210,70%,60%);
 $palette-cash: #49C06C;
@@ -39,9 +39,9 @@ $base-font-family: 'Open Sans';
   }
 
   &::-webkit-scrollbar-track {
-    background: #eee;
+    background: add-tint($palette-darkgray, 95%);
   }
-  
+
   &::-webkit-scrollbar-thumb {
     background-color: add-tint($palette-darkgray, 80%);
   }

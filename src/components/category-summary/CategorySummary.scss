@@ -1,6 +1,7 @@
 @import '../../global.scss';
 
 $width: 400px;
+$font-size: 27px;
 
 .categorySummaryContainer {
   @extend .thinScrollbar;
@@ -30,10 +31,10 @@ $width: 400px;
 }
 
 .categorySummaryRow {
-  font-size: 21px;
+  font-size: $font-size;
   display: flex;
   padding-bottom: 0.3em;
-  
+
   // &:nth-of-type(even) {
   //   background: hsl(0,0%,98%);
   // }
@@ -58,11 +59,11 @@ $width: 400px;
 
 .totalContainer {
   margin-top: 1em;
-  font-size: 21px;
+  font-size: $font-size;
   display: flex;
   color: $palette-negative;
   font-weight: $weight-bold;
-  border-top: 3px solid add-tint($palette-text, 90%);
+  border-top: 3px solid add-tint($palette-text, 95%);
   padding-top: 0.5em;
 }
 

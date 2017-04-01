@@ -3,14 +3,15 @@
   width: 5px; }
 
 .thinScrollbar::-webkit-scrollbar-track {
-  background: #eee; }
+  background: #f5f6f6; }
 
 .thinScrollbar::-webkit-scrollbar-thumb {
-  background-color: #d8d8d9; }
+  background-color: #d9dbdd; }
 
 .sidebar {
   flex: 0 0 250px;
-  background: #3B3E41; }
+  background: #3f4a53;
+  font-size: 1rem; }
 
 ul {
   display: flex;
@@ -27,15 +28,17 @@ li {
 
 a {
   text-decoration: none;
-  color: #626567;
-  font-size: 21px;
+  color: #656e75;
+  font-size: 16px;
   font-weight: bold;
   transition: background 0.1s, color 0.1s;
-  background: transparent; }
+  background: transparent;
+  text-transform: uppercase;
+  letter-spacing: 0.1em; }
 
 a:hover {
-  background: #45484b;
-  color: #9d9fa0; }
+  background: #49535c;
+  color: #9fa5a9; }
 
 a.selected {
   background: #5D758E;
