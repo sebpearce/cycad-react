@@ -31,7 +31,8 @@ $width: 400px;
 
 .categorySummaryRowCat {
   flex: 5;
-  color: mix(#fff, $palette-text, 70%);
+  color: add-tint($palette-text, 50%);
+  font-weight: $weight-light;
 }
 
 .categorySummaryRowAmt {

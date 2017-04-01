@@ -22,9 +22,10 @@ a {
   font-weight: bold;
   transition: background 0.1s, color 0.1s;
   background: transparent; }
-  a:hover {
-    background: #45484b;
-    color: #9d9fa0; }
+
+a:hover {
+  background: #45484b;
+  color: #9d9fa0; }
 
 a.selected {
   background: #5D758E;

@@ -40,7 +40,7 @@ class CategorySummary extends React.Component {
       thisMonthsTransactions,
       'cat_id'
     );
-
+    
     const totalsForEachCategory = Object.keys(
       thisMonthsTransactionsByCategory
     ).reduce(
@@ -59,7 +59,7 @@ class CategorySummary extends React.Component {
       },
       {}
     );
-    
+
     return (
       <div className={styles.categorySummaryContainer}>
         <div className={styles.categorySummaryHeading}>This month so far</div>

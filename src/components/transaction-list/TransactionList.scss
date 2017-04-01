@@ -45,21 +45,22 @@ $width: 400px;
   height: 100%;
 
   svg {
-    fill: $palette-negative;
+    fill: add-tint($palette-darkgray, 80%);
   }
 
   &:hover {
     cursor: pointer;
 
     svg {
-      fill: darken($palette-negative, 25%);
+      fill: $palette-negative;
     }
   }
 }
 
 .transactionListRowCat {
   flex: 5;
-  color: mix(#fff, $palette-text, 70%);
+  color: add-tint($palette-text, 50%);
+  font-weight: $weight-light;
 }
 
 .transactionListRowAmt {

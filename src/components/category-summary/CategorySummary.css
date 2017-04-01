@@ -22,7 +22,8 @@
 
 .categorySummaryRowCat {
   flex: 5;
-  color: #c4c5c6; }
+  color: #9d9fa0;
+  font-weight: 300; }
 
 .categorySummaryRowAmt, .categorySummaryRowAmtPositive {
   flex: 3;
