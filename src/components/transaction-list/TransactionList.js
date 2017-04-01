@@ -51,13 +51,30 @@ const DayOfTransactions = props => {
 };
 
 class TransactionList extends React.Component {
+  scrollToBottom() {
+    const scrollHeight = this.transactionList.scrollHeight;
+    const height = this.transactionList.clientHeight;
+    const maxScrollTop = scrollHeight - height;
+    this.transactionList.scrollTop = maxScrollTop > 0 ? maxScrollTop : 0;
+  }
+  
+  componentDidMount() {
+    this.scrollToBottom();
+  }
+
   render() {
     const props = this.props;
     const dates = Object.keys(props.transactionsByDate).sort();
     const transactions = props.transactionsByDate;
 
     return (
-      <div className={styles.transactionListContainer}>
+      <div
+        className={styles.transactionListContainer}
+        ref={div => {
+          this.transactionList = div;
+        }}
+      >
+        <div className={styles.transactionListHeading}>All transactions</div>
         {dates.map(day => {
           return (
             <DayOfTransactions

@@ -7,7 +7,6 @@ $palette-coolblue: #5D758E;
 $palette-brightblue: hsl(210,70%,60%);
 $palette-cash: #49C06C;
 $palette-text: $palette-darkgray;
-// $palette-text: #616468;
 
 $weight-heavy: 700;
 $weight-bold: 600;
@@ -31,4 +30,19 @@ $base-font-family: 'Open Sans';
   $decimal: $percentage / 100%;
   $inverse: 1 - $decimal;
   @return transparentize($color, $inverse);
+}
+
+.thinScrollbar {
+  &::-webkit-scrollbar {
+    background: transparent;
+    width: 5px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #eee;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background-color: add-tint($palette-darkgray, 80%);
+  }
 }

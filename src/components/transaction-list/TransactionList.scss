@@ -1,11 +1,22 @@
 @import '../../global.scss';
 
-$width: 400px;
+$width: 500px;
 
 .transactionListContainer {
-  max-width: $width;
-  padding: 30px;
+  @extend .thinScrollbar;
+
+  padding: 40px 20px 40px 50px;
   font-size: 1rem;
+  flex: 1;
+  overflow-y: auto;
+  height: 100vh;
+  box-sizing: border-box;
+}
+
+.transactionListHeading {
+  font-size: 27px;
+  font-weight: $weight-bold;
+  padding-bottom: 0.5em;
 }
 
 .transactionListDay {

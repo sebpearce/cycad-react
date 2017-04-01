@@ -1,7 +1,25 @@
+.thinScrollbar::-webkit-scrollbar, .transactionListContainer::-webkit-scrollbar {
+  background: transparent;
+  width: 5px; }
+
+.thinScrollbar::-webkit-scrollbar-track, .transactionListContainer::-webkit-scrollbar-track {
+  background: #eee; }
+
+.thinScrollbar::-webkit-scrollbar-thumb, .transactionListContainer::-webkit-scrollbar-thumb {
+  background-color: #d8d8d9; }
+
 .transactionListContainer {
-  max-width: 400px;
-  padding: 30px;
-  font-size: 1rem; }
+  padding: 40px 20px 40px 50px;
+  font-size: 1rem;
+  flex: 1;
+  overflow-y: auto;
+  height: 100vh;
+  box-sizing: border-box; }
+
+.transactionListHeading {
+  font-size: 27px;
+  font-weight: 600;
+  padding-bottom: 0.5em; }
 
 .transactionListDay {
   padding-bottom: 15px; }

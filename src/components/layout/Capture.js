@@ -168,24 +168,20 @@ export class Capture extends React.Component {
               setDateToToday={setDateToToday}
             />}
 
-          <div className={styles.transactionListContainer}>
-            <TransactionList
-              transactionsByDate={transactionsByDate}
-              categories={categories}
-              removeTransaction={removeTransaction}
-            />
-          </div>
-          <div className={styles.categorySummaryContainer}>
-            <CategorySummary
-              transactions={this.props.transactions}
-              categories={categories}
-            />
-          </div>
+          <TransactionList
+            transactionsByDate={transactionsByDate}
+            categories={categories}
+            removeTransaction={removeTransaction}
+          />
+          <CategorySummary
+            transactions={this.props.transactions}
+            categories={categories}
+          />
         </div>
-        <button onClick={clearState}>Clear state</button>
+        {/* <button onClick={clearState}>Clear state</button>
         <pre>
           {JSON.stringify(store.getState(), null, '  ')}
-        </pre>
+        </pre> */}
       </div>
     );
   }

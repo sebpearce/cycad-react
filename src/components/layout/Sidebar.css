@@ -1,3 +1,13 @@
+.thinScrollbar::-webkit-scrollbar {
+  background: transparent;
+  width: 5px; }
+
+.thinScrollbar::-webkit-scrollbar-track {
+  background: #eee; }
+
+.thinScrollbar::-webkit-scrollbar-thumb {
+  background-color: #d8d8d9; }
+
 .sidebar {
   flex: 0 0 250px;
   background: #3B3E41; }

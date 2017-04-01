@@ -2,3 +2,4 @@
 
 - add undo functionality
 - make transactionlist scrollable and keep focused on most recent
+- move all behaviour into container components (rename "-Container")
