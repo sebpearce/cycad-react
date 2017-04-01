@@ -40,7 +40,7 @@ class CategorySummary extends React.Component {
       thisMonthsTransactions,
       'cat_id'
     );
-    
+
     const totalsForEachCategory = Object.keys(
       thisMonthsTransactionsByCategory
     ).reduce(
@@ -59,11 +59,21 @@ class CategorySummary extends React.Component {
       },
       {}
     );
+    console.log(totalsForEachCategory);
+
+    const expenseCategoryKeysOrderedByAmount = Object.keys(
+      totalsForEachCategory
+    ).sort(
+      (a, b) =>
+        totalsForEachCategory[a] -
+        totalsForEachCategory[b]
+    ).filter(key => totalsForEachCategory[key] < 0);
+    console.log(expenseCategoryKeysOrderedByAmount);
 
     return (
       <div className={styles.categorySummaryContainer}>
         <div className={styles.categorySummaryHeading}>This month so far</div>
-        {Object.keys(totalsForEachCategory).map(id => {
+        {expenseCategoryKeysOrderedByAmount.map(id => {
           return (
             <CategorySummaryRow
               key={id}

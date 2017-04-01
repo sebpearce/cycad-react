@@ -1,4 +1,4 @@
 // TODO
 
-- add delete functionality for row
 - add undo functionality
+- make transactionlist scrollable and keep focused on most recent
