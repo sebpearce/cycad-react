@@ -57,7 +57,7 @@ export const determineNumericValue = x => {
   )
 }
 
-export const formatAsCurrency = (x, settings) => {
+export const formatAsCurrency = (x, settings = {plus: false, minus: false}) => {
   const numericValue = determineNumericValue(x);
   let outputString = pipe(
     numericValue,

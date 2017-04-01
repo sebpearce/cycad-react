@@ -10,6 +10,7 @@ $width: 400px;
   padding: 40px 50px;
   height: 100vh;
   box-sizing: border-box;
+  font-size: 1rem;
 }
 
 .categorySummaryHeading {
@@ -53,4 +54,24 @@ $width: 400px;
 .categorySummaryRowAmtPositive {
   @extend .categorySummaryRowAmt;
   color: $palette-cash;
+}
+
+.totalContainer {
+  margin-top: 1em;
+  font-size: 21px;
+  display: flex;
+  color: $palette-negative;
+  font-weight: $weight-bold;
+  border-top: 3px solid add-tint($palette-text, 90%);
+  padding-top: 0.5em;
+}
+
+.totalLabel {
+  @extend .categorySummaryRowCat;
+  color: inherit;
+  font-weight: inherit;
+}
+
+.total {
+  @extend .categorySummaryRowAmt;
 }

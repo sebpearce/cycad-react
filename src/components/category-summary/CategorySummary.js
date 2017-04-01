@@ -7,6 +7,7 @@ import {
   getFirstOfThisMonthISO,
   getLastOfThisMonthISO,
 } from '../../helpers/date-helpers';
+import CategorySummaryTotal from './CategorySummaryTotal';
 
 const CategorySummaryRow = props => {
   const amtClass = props.amt > 0
@@ -19,7 +20,7 @@ const CategorySummaryRow = props => {
         {props.categoryName}
       </div>
       <div className={amtClass}>
-        {formatAsCurrency(props.amt, { plus: true, minus: true })}
+        {formatAsCurrency(props.amt)}
       </div>
     </div>
   );
@@ -59,7 +60,7 @@ class CategorySummary extends React.Component {
       },
       {}
     );
-    console.log(totalsForEachCategory);
+    console.log('totalsForEachCategory', totalsForEachCategory);
 
     const expenseCategoryKeysOrderedByAmount = Object.keys(
       totalsForEachCategory
@@ -68,7 +69,12 @@ class CategorySummary extends React.Component {
         totalsForEachCategory[a] -
         totalsForEachCategory[b]
     ).filter(key => totalsForEachCategory[key] < 0);
-    console.log(expenseCategoryKeysOrderedByAmount);
+    console.log('expenseCategoryKeysOrderedByAmount', expenseCategoryKeysOrderedByAmount);
+
+    const totalExpenses = expenseCategoryKeysOrderedByAmount.reduce((p, c) => {
+      return p + totalsForEachCategory[c];
+    }, 0)
+    console.log('totalExpenses', totalExpenses);
 
     return (
       <div className={styles.categorySummaryContainer}>
@@ -82,6 +88,7 @@ class CategorySummary extends React.Component {
             />
           );
         })}
+        <CategorySummaryTotal total={totalExpenses} />
       </div>
     );
   }
