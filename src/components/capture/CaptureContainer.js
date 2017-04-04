@@ -4,7 +4,7 @@ import { CaptureModal } from './capture-modal/CaptureModal';
 import { store } from '../../store';
 import TransactionList from '../transaction-list/TransactionList';
 import CategorySummary from '../category-summary/CategorySummary';
-import styles from './Capture.css';
+import styles from './Capture.scss';
 import { groupByProperty } from '../../helpers/misc-helpers';
 
 const updateAmountInput = amt => {

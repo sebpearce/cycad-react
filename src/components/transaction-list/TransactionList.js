@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './TransactionList.css';
+import styles from './TransactionList.scss';
 import { formatLongDate } from '../../helpers/date-helpers';
 import { formatAsCurrency } from '../../helpers/currency-helpers';
 import { getCategoryName } from '../../helpers/misc-helpers';

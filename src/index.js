@@ -7,7 +7,7 @@ import createBrowserHistory from 'history/createBrowserHistory';
 import { store } from './store';
 import { saveState } from './localStorage';
 import { throttle } from 'lodash';
-import './index.css';
+import './index.scss';
 
 const history = createBrowserHistory();
 

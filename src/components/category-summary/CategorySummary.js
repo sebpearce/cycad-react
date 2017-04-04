@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './CategorySummary.css';
+import styles from './CategorySummary.scss';
 import { formatAsCurrency, roundToTwo } from '../../helpers/currency-helpers';
 import { getCategoryName } from '../../helpers/misc-helpers';
 import { groupByProperty } from '../../helpers/misc-helpers';

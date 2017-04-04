@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './IconDefs.css';
+import styles from './IconDefs.scss';
 
 const Icon = props => {
   return (

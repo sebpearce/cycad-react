@@ -1,7 +1,7 @@
 import React from 'react';
 import { Motion, spring } from 'react-motion';
 import { Howl } from 'howler';
-import styles from './CaptureModal.css';
+import styles from './CaptureModal.scss';
 import DatePicker from './DatePicker';
 import AmountInput from './AmountInput';
 import CategoryInput from './CategoryInput';

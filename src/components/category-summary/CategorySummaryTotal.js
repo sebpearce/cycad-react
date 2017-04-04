@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './CategorySummary.css';
+import styles from './CategorySummary.scss';
 import { formatAsCurrency } from '../../helpers/currency-helpers';
 
 const CategorySummaryTotal = props => {

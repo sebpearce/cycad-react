@@ -1,5 +1,10 @@
 // TODO
 
+- attach to json server backend
+- only load last 3 months by default in transaction list; scroll up to load more
 - add undo functionality
 - move all behaviour into container components (rename "-Container")
-- Make Webpack use SCSS only, don't compile to CSS manually (and ignore css in .gitignore)
+
+
+- add ability to import csv from bank
+- store list of regex patterns and associated categories in db so user can configure automatic imports based on transaction description in csv

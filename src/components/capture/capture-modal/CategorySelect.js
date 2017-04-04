@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './CaptureModal.css';
+import styles from './CaptureModal.scss';
 
 const CategoryItem = ({ name, className, handleMouseOver }) => {
   return <div className={className} onMouseOver={handleMouseOver}>{name}</div>;

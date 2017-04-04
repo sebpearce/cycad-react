@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styles from './App.css';
+import styles from './App.scss';
 import { Route } from 'react-router-dom';
 import IconDefs from './components/IconDefs';
 import CaptureContainer from './components/capture/CaptureContainer';

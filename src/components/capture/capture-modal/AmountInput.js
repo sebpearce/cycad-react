@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './CaptureModal.css';
+import styles from './CaptureModal.scss';
 import {
   formatAsCurrency,
   determineNumericValue,
