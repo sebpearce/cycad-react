@@ -26,7 +26,8 @@
 .tips {
   text-align: right;
   font-size: 12.6px;
-  color: #ccc; }
+  color: #ccc;
+  margin-bottom: 5px; }
 
 .dateDisplay {
   font-size: 21px;

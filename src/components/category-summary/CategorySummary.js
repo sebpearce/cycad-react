@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './CategorySummary.css';
-import { formatAsCurrency } from '../../helpers/currency-helpers';
+import { formatAsCurrency, roundToTwo } from '../../helpers/currency-helpers';
 import { getCategoryName } from '../../helpers/misc-helpers';
 import { groupByProperty } from '../../helpers/misc-helpers';
 import {
@@ -49,7 +49,7 @@ class CategorySummary extends React.Component {
         const out = {};
         out[id] = thisMonthsTransactionsByCategory[id].reduce(
           (total, currentItem) => {
-            return total + Number(currentItem.amt);
+            return roundToTwo(total + Number(currentItem.amt));
           },
           0
         );
@@ -72,7 +72,7 @@ class CategorySummary extends React.Component {
     console.log('expenseCategoryKeysOrderedByAmount', expenseCategoryKeysOrderedByAmount);
 
     const totalExpenses = expenseCategoryKeysOrderedByAmount.reduce((p, c) => {
-      return p + totalsForEachCategory[c];
+      return roundToTwo(p + totalsForEachCategory[c]);
     }, 0)
     console.log('totalExpenses', totalExpenses);
 

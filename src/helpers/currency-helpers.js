@@ -15,6 +15,10 @@ import { pipe } from './misc-helpers';
 //   return Number(stripped) > 0 ? '+'.concat(x) : x;
 // };
 
+export const roundToTwo = (num) => {
+  return Number(Math.round(num + 'e+2')  + 'e-2');
+}
+
 export const formatWithCommas = x => {
   return String(x).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
 };
