@@ -3,7 +3,7 @@ import styles from './CaptureModal.css';
 import {
   formatAsCurrency,
   determineNumericValue,
-} from '../../helpers/currency-helpers';
+} from '../../../helpers/currency-helpers';
 
 class AmountInput extends React.Component {
   render() {

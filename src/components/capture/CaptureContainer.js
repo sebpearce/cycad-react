@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { CaptureModal } from '../capture-modal/CaptureModal';
+import { CaptureModal } from './capture-modal/CaptureModal';
 import { store } from '../../store';
 import TransactionList from '../transaction-list/TransactionList';
 import CategorySummary from '../category-summary/CategorySummary';
@@ -187,6 +187,8 @@ export class Capture extends React.Component {
   }
 }
 
-export const CaptureContainer = connect(mapStateToProps, mapDispatchToProps)(
+const CaptureContainer = connect(mapStateToProps, mapDispatchToProps)(
   Capture
 );
+
+export default CaptureContainer;

@@ -1,6 +1,6 @@
 .transactionListContainer::-webkit-scrollbar {
   background: transparent;
-  width: 5px; }
+  width: 3px; }
 
 .transactionListContainer::-webkit-scrollbar-track {
   background: #f5f6f6; }

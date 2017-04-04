@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './CaptureModal.css';
-import { formatLongDate } from '../../helpers/date-helpers';
+import { formatLongDate } from '../../../helpers/date-helpers';
 
 const getDayOfWeek = isoDate => {
   const dateObj = new Date(isoDate);

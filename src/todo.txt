@@ -2,5 +2,4 @@
 
 - add undo functionality
 - move all behaviour into container components (rename "-Container")
-- currency bug 4: -124.49000000000001 (insert decimal manually into string instead of / 100)
 - Make Webpack use SCSS only, don't compile to CSS manually (and ignore css in .gitignore)

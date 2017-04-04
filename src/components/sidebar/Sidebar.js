@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import styles from './Sidebar.css';
 import Icon from '../Icon';
 
-export const Sidebar = () => {
+const Sidebar = () => {
   return (
     <div className={styles.sidebar}>
       <nav>
@@ -61,3 +61,5 @@ export const Sidebar = () => {
     </div>
   );
 };
+
+export default Sidebar;

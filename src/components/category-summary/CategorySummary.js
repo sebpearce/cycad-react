@@ -60,7 +60,6 @@ class CategorySummary extends React.Component {
       },
       {}
     );
-    console.log('totalsForEachCategory', totalsForEachCategory);
 
     const expenseCategoryKeysOrderedByAmount = Object.keys(
       totalsForEachCategory
@@ -69,12 +68,10 @@ class CategorySummary extends React.Component {
         totalsForEachCategory[a] -
         totalsForEachCategory[b]
     ).filter(key => totalsForEachCategory[key] < 0);
-    console.log('expenseCategoryKeysOrderedByAmount', expenseCategoryKeysOrderedByAmount);
 
     const totalExpenses = expenseCategoryKeysOrderedByAmount.reduce((p, c) => {
       return roundToTwo(p + totalsForEachCategory[c]);
     }, 0)
-    console.log('totalExpenses', totalExpenses);
 
     return (
       <div className={styles.categorySummaryContainer}>
