@@ -5,6 +5,13 @@
 - add undo functionality
 - move all behaviour into container components (rename "-Container")
 
-
+// future
 - add ability to import csv from bank
 - store list of regex patterns and associated categories in db so user can configure automatic imports based on transaction description in csv
+
+How to store user data in Electron
+https://github.com/nylas/electron-RxDB
+https://www.slideshare.net/bengotow/electron-databases-and-rxdb
+https://github.com/pubkey/rxdb
+https://medium.com/@ccnokes/how-to-store-user-data-in-electron-3ba6bf66bc1e
+https://github.com/kripken/sql.js
