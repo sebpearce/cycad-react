@@ -6,7 +6,7 @@ $font-size: 21px;
 .categorySummaryContainer {
   @extend %thinScrollbar;
 
-  flex: 1 0 auto;
+  flex: 0 1 $column-max-width;
   min-width: $min-width;
   overflow-y: auto;
   padding: 40px 50px;

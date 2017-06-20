@@ -7,7 +7,7 @@ $min-width: 400px;
 
   padding: 40px 50px;
   font-size: 1rem;
-  flex: 1 0 auto;
+  flex: 0 1 $column-max-width;
   min-width: $min-width;
   overflow-y: auto;
   height: 100vh;

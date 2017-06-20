@@ -18,6 +18,8 @@ $font-size-large: 28px;
 
 $base-font-family: 'Open Sans';
 
+$column-max-width: 550px;
+
 @function add-tint($color, $percentage) {
   @return mix(#fff, $color, $percentage);
 }
